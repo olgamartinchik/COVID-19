@@ -4,13 +4,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./src/sass/style.css"> -->
     <link rel="stylesheet" href="./dist/style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <h1>Hello, World</h1>
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <h1 class="header-title">
+                    COVID-19 Dashdord
+                </h1>
+                <form class="select-form" method="GET" action="">
+                    <label class="form-label" for="input-select">Select Country</label>
+                    <div class="input-container">
+                        <input id="input-select" type="text">
+                        <button class="search" type="submit">Search</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="main-container">
+                <div class="main-table main-table_left">
+                    <div class="main-subtable  subtable-global-sick">
+                        <div class="circle-btn">
+                            <i class="far fa-times-circle"></i>
+                        </div>
+
+                        <div class="slider-container">
+                            <div class="infinity-slider">
+                                <div class="case-slide slide-global">
+                                    <h4 class="table-title table-title-sick">Global Cases</h4>
+                                    <div class="global-case global-case-sick">11 111 111</div>
+                                </div>
+                                <div class="case-slide slide-global">
+                                    <h4 class="table-title table-title-sick">Global Cases/day</h4>
+                                    <div class="global-case global-case-sick">66 666 666</div>
+                                </div>
+                                <div class="case-slide slide-global">
+                                    <h4 class="table-title table-title-sick">Global Cases/100 t. population</h4>
+                                    <div class="global-case global-case-sick">77 777 777</div>
+                                </div>
+                                <div class="case-slide slide-global">
+                                    <h4 class="table-title table-title-sick">Global Cases/day/100 t. population</h4>
+                                    <div class="global-case global-case-sick">77 777 777</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <i class="fas fa-caret-square-left global-case-left"></i> <i class="fas fa-caret-square-right global-case-right"></i>
+                    </div>
+
+                    <div class="main-subtable subtable-country">
+                        <div class="circle-btn">
+                            <i class="far fa-times-circle"></i>
+                        </div>
+
+                        <h4 class="table-title table-title-country">Cases by Country</h4>
+                        <ul class="case-country case-country-sick">
+
+                            <li class="country country-sick"><span class="color-sick">22 222 222</span> <span><i class="far fa-flag"></i></span> <span>Italy</span></li>
+                            <li class="country country-sick"><span class="color-sick">22 222 222</span> <span><i class="far fa-flag"></i></span> <span>Bosnia and Herzegovina</span></li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="main-table main-table_middle">
+                    <div class="main-subtable  subtable-map">
+                        <div class="circle-btn">
+                            <i class="far fa-times-circle"></i>
+                        </div>
+                        <div class="map-case">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d150505.9295830918!2d27.453285966964415!3d53.884558462698536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfd35b1e6ad3%3A0xb61b853ddb570d9!2z0JzQuNC90YHQug!5e0!3m2!1sru!2sby!4v1608010869888!5m2!1sru!2sby"
+                                width="600" height="450" frameborder="0" style="border:0; max-width:100%" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                    </div>
+                    <div class="main-subtable-middle subtable-update">
+
+                        <div class="main-subtable ">
+                            <div class="circle-btn">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                            <div class="global-case global-case-country">191</div>
+                            <h5 class="table-title">countries</h5>
+                        </div>
+                        <div class="main-subtable main-subtable-date">
+                            <div class="circle-btn">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                            <h5 class="table-title">Last Updated at (M/D/YYYY)</h5>
+                            <div class="global-case global-case-date">12/14/2020</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="main-table main-table_right">
+                    <div class="main-subtable-middle subtable-statistics">
+                        <div class="main-subtable subtable-case-deaths">
+                            <div class="circle-btn">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                            <div class="slider-container">
+                                <div class="infinity-slider ">
+                                    <div class="case-slide slider-deaths">
+                                        <h4 class="table-title table-title-deaths">Global Deaths</h4>
+                                        <div class="global-case global-case-deaths">11 111 111</div>
+                                        <ul class="case-country ">
+                                            <li class="country country-deaths"><span class="color-deaths">44 444 444 deaths</span> <span>Italy</span></li>
+                                            <li class="country country-deaths"><span class="color-deaths">44 444 444 deaths</span> <span>Bosnia and Herzegovina</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="case-slide slider-deaths">
+                                        <h4 class="table-title table-title-deaths">Global Deaths/day</h4>
+                                        <div class="global-case global-case-deaths">13 114 611</div>
+
+                                        <ul class="case-country ">
+                                            <li class="country country-deaths"><span class="color-deaths">44 444 444 deaths</span> <span>Italy</span></li>
+                                            <li class="country country-deaths"><span class="color-deaths">44 444 444 deaths</span> <span>Bosnia and Herzegovina</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="case-slide slider-deaths">
+                                        <h4 class="table-title table-title-deaths">Global Deaths/100 t. population</h4>
+                                        <div class="global-case global-case-deaths">31 151 911</div>
+
+                                        <ul class="case-country ">
+                                            <li class="country country-deaths"><span class="color-deaths">44 444 444 deaths</span> <span>Italy</span></li>
+                                            <li class="country country-deaths"><span class="color-deaths">44 444 444 deaths</span> <span>Bosnia and Herzegovina</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="case-slide slider-deaths">
+                                        <h4 class="table-title table-title-deaths">Global Deaths/day/100 t. population</h4>
+                                        <div class="global-case global-case-deaths">16 115 117</div>
+
+                                        <ul class="case-country ">
+                                            <li class="country country-deaths"><span class="color-deaths">44 444 444 deaths</span> <span>Italy</span></li>
+                                            <li class="country country-deaths"><span class="color-deaths">44 444 444 deaths</span> <span>Bosnia and Herzegovina</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-caret-square-left deaths-left"></i>
+                            <i class="fas fa-caret-square-right deaths-right"></i>
+                        </div>
+                        <div class="main-subtable subtable-case-recovered">
+
+                            <div class="circle-btn">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+
+                            <div class="slider-container">
+                                <div class="infinity-slider ">
+                                    <div class="case-slide slide-recovered">
+                                        <h4 class="table-title table-title">Global Recovered</h4>
+                                        <div class="global-case global-case-recovered">11 111 111</div>
+
+                                        <ul class="case-country">
+                                            <li class="country country-recovered"><span class="color-recovered">33 333 333 recovered</span> <span>Italy</span></li>
+                                            <li class="country country-recovered"><span class="color-recovered">33 333 333 recovered</span> <span>Bosnia and Herzegovina</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="case-slide slide-recovered">
+                                        <h4 class="table-title table-title">Global Recovered/day</h4>
+                                        <div class="global-case global-case-recovered">11 111 111</div>
+
+                                        <ul class="case-country">
+                                            <li class="country country-recovered"><span class="color-recovered">33 333 333 recovered</span> <span>Italy</span></li>
+                                            <li class="country country-recovered"><span class="color-recovered">33 333 333 recovered</span> <span>Bosnia and Herzegovina</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="case-slide slide-recovered">
+                                        <h4 class="table-title table-title">Global Recovered/100 t. population</h4>
+                                        <div class="global-case global-case-recovered">11 111 111</div>
+
+                                        <ul class="case-country">
+                                            <li class="country country-recovered"><span class="color-recovered">33 333 333 recovered</span> <span>Italy</span></li>
+                                            <li class="country country-recovered"><span class="color-recovered">33 333 333 recovered</span> <span>Bosnia and Herzegovina</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="case-slide slide-recovered">
+                                        <h4 class="table-title table-title">Global Recovered/day/100 t. population</h4>
+                                        <div class="global-case global-case-recovered">11 111 111</div>
+
+                                        <ul class="case-country">
+                                            <li class="country country-recovered"><span class="color-recovered">33 333 333 recovered</span> <span>Italy</span></li>
+                                            <li class="country country-recovered"><span class="color-recovered">33 333 333 recovered</span> <span>Bosnia and Herzegovina</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-caret-square-left recovered-left"></i>
+                            <i class="fas fa-caret-square-right recovered-right"></i>
+                        </div>
+                    </div>
+                    <div class="main-subtable subtable-diagram">
+                        <div class="circle-btn">
+                            <i class="far fa-times-circle"></i>
+                        </div>
+                        <div class="case-diagram">
+                            <!-- <img src="https://lh3.googleusercontent.com/proxy/M0eOiiJXWGBJzayJ06qLJ5zX5aYHmRz9CSobIYdeGrDd-r7qc6Z77IYZdWNpXQ_rUzNaA-6ESGhfk-znTbLDDtsY" alt=""> -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <h6 class="footer-title">COVID-19 Dashdoard <i class="far fa-copyright"></i> 2020</h6>
+                <div class="footer-link">
+                    <a href="https://github.com/olgamartinchik"><i class="fab fa-github-alt"></i> </a>
+                    <a href="https://github.com/lozovaya-collab"><i class="fab fa-github-alt"></i> </a>
+                </div>
+
+                <a href="https://rs.school/js/" target="_blank"><img class="footerLogo" src="https://rs.school/images/rs_school_js.svg" alt="icon"></a>
+
+            </div>
+        </div>
+    </footer>
     <script src="./dist/script.js"></script>
 </body>
 

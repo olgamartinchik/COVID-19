@@ -1,0 +1,275 @@
+.main-container {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+    border-radius: 5px;
+    color: rgb(224, 220, 220);
+    position: relative;
+}
+
+.main-table {
+    height: 100%;
+    margin: 0 2px;
+}
+
+.main-table_left {
+    flex-grow: .5;
+    width: 100%;
+}
+
+.main-table_middle {
+    flex-grow: 2.8;
+    width: 100%;
+}
+
+.main-table_right {
+    flex-grow: .7;
+    width: 100%;
+}
+
+.main-subtable {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #282828;
+    border: 1px solid rgb(105, 2, 2);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px 0;
+}
+
+.main-subtable-middle {
+    display: flex;
+    width: 100%;
+}
+
+.subtable-global-sick,
+.subtable-case-deaths,
+.subtable-case-recovered {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.subtable-case-recovered,
+.main-subtable-date {
+    margin-left: 2px;
+}
+
+//height block
+.subtable-global-sick {
+    height: 14.5vh;
+}
+
+.subtable-map {
+    height: 74.4vh;
+}
+
+.subtable-country {
+    height: 68.1vh;
+}
+
+.subtable-update {
+    height: 8.4vh;
+}
+
+.subtable-statistics {
+    height: 50vh;
+}
+
+.subtable-diagram {
+    height: 32.8vh;
+}
+
+//
+.global-case {
+    font-size: 30px;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+
+.global-case-sick {
+    color: rgb(230, 0, 0);
+}
+
+.global-case-deaths {
+    opacity: 0.7;
+}
+
+.global-case-recovered {
+    color: rgb(112, 168, 0);
+}
+
+.map-case {
+    // width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    & iframe {}
+}
+
+//titel absolute
+.table-title-sick,
+.table-title-country,
+.table-title-deaths,
+.table-title-recovered {
+    // position: absolute;
+    // top: 5px;
+}
+
+.table-title {
+    margin: 3px 0 5px;
+}
+
+.table-title-country {
+    margin-bottom: 10px;
+}
+
+//button slider
+.fa-caret-square-right {
+    font-size: 25px;
+    position: absolute;
+    bottom: 4px;
+    right: 15px;
+    &:hover {
+        cursor: pointer;
+        color: rgb(189, 183, 183);
+    }
+}
+
+.fa-caret-square-left {
+    font-size: 25px;
+    position: absolute;
+    bottom: 4px;
+    left: 15px;
+    &:hover {
+        cursor: pointer;
+        color: rgb(189, 183, 183);
+    }
+}
+
+//slider
+.slider-container {
+    height: 100%;
+    width: 100%;
+    // position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.infinity-slider {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.case-slide {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #282828;
+    transition: all ease .5s;
+    opacity: 1;
+    top: 0;
+    bottom: 0;
+}
+
+.infinity-slider .opacity0 {
+    opacity: 0;
+}
+
+//
+.color-sick {
+    color: rgb(230, 0, 0);
+}
+
+.color-recovered {
+    color: rgb(112, 168, 0);
+}
+
+.color-deaths {
+    opacity: 0.7;
+}
+
+.country {
+    cursor: pointer;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.658);
+}
+
+.country:hover {
+    opacity: 0.8;
+}
+
+//scroll
+.case-country {
+    overflow-y: scroll;
+    height: 259px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.case-country-sick {
+    overflow-y: scroll;
+    height: 453px;
+}
+
+.case-country::-webkit-scrollbar {
+    width: 4px;
+}
+
+.case-country::-webkit-scrollbar-track {
+    background: #7a7979;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+}
+
+.case-country::-webkit-scrollbar-thumb {
+    background: rgb(53, 52, 52);
+    border-radius: 8px;
+    border: 1px solid #7a7979;
+}
+
+//close btn
+.circle-btn {
+    display: none;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    font-size: 22px;
+    color: rgb(87, 85, 85);
+    z-index: 2;
+}
+
+.circle-btn:hover {
+    cursor: pointer;
+    color: rgb(180, 177, 177);
+}
+
+//open section
+.main-subtable-open {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    // height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    & .global-case {
+        font-size: 60px;
+    }
+    & h4 {
+        font-size: 30px;
+    }
+    & .table-title {
+        font-size: 30px;
+    }
+    & .case-country {
+        max-height: 500px;
+    }
+}
