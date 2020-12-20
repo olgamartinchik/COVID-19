@@ -1,4 +1,5 @@
-export const Keyboard = {
+// export 
+const Keyboard = {
 
     elements: {
         main: null,

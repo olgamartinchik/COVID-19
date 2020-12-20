@@ -109,7 +109,6 @@
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    & iframe {}
 }
 
 //titel absolute
@@ -207,6 +206,10 @@
     opacity: 0.8;
 }
 
+.country-active {
+    background-color: rgb(109, 105, 105);
+}
+
 //scroll
 .case-country {
     overflow-y: scroll;
@@ -218,21 +221,6 @@
 .case-country-sick {
     overflow-y: scroll;
     height: 453px;
-}
-
-.case-country::-webkit-scrollbar {
-    width: 4px;
-}
-
-.case-country::-webkit-scrollbar-track {
-    background: #7a7979;
-    box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
-}
-
-.case-country::-webkit-scrollbar-thumb {
-    background: rgb(53, 52, 52);
-    border-radius: 8px;
-    border: 1px solid #7a7979;
 }
 
 //close btn
