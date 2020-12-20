@@ -30,6 +30,21 @@ h5 {
   text-align: center;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #7a7979;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #353434;
+  border-radius: 8px;
+  border: 1px solid #7a7979;
+}
+
 .header {
   color: #fff;
   display: flex;
@@ -69,6 +84,9 @@ h5 {
   outline: none;
   padding: 0 10px;
   margin: 5px;
+  box-shadow: 0 1px 5px rgba(10, 70, 10, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .select-form {
@@ -84,33 +102,13 @@ h5 {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.search {
-  margin: 5px;
-  position: relative;
-  display: inline-block;
-  font-size: 90%;
-  font-weight: 700;
-  color: #d1d1d9;
-  text-decoration: none;
-  text-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-  padding: 0.5em 1em;
-  outline: none;
-  border-radius: 3px;
-  background: linear-gradient(#6e7078, #515156) #6e7078;
-  box-shadow: 0 1px rgba(255, 255, 255, 0.2) inset, 0 3px 5px rgba(0, 1, 6, 0.5), 0 0 1px 1px rgba(0, 1, 6, 0.2);
-  transition: 0.2s ease-in-out;
-}
-.search:hover:not(:active) {
-  cursor: pointer;
-  background: linear-gradient(#7e7e86, #46474c) #7e7e86;
-}
-.search:active {
-  cursor: pointer;
-  top: 1px;
-  background: linear-gradient(#4c4d52, #38393e) #4c4d52;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5) inset, 0 2px 3px rgba(0, 0, 0, 0.5) inset, 0 1px 1px rgba(255, 255, 255, 0.1);
+.fa-search {
+  position: absolute;
+  color: #000;
+  right: 20px;
 }
 
 .main-container {
@@ -222,6 +220,7 @@ h5 {
   position: relative;
   overflow: hidden;
 }
+
 .table-title {
   margin: 3px 0 5px;
 }
@@ -304,6 +303,10 @@ h5 {
   opacity: 0.8;
 }
 
+.country-active {
+  background-color: #6d6969;
+}
+
 .case-country {
   overflow-y: scroll;
   height: 259px;
@@ -314,21 +317,6 @@ h5 {
 .case-country-sick {
   overflow-y: scroll;
   height: 453px;
-}
-
-.case-country::-webkit-scrollbar {
-  width: 4px;
-}
-
-.case-country::-webkit-scrollbar-track {
-  background: #7a7979;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
-}
-
-.case-country::-webkit-scrollbar-thumb {
-  background: #353434;
-  border-radius: 8px;
-  border: 1px solid #7a7979;
 }
 
 .circle-btn {
@@ -545,6 +533,53 @@ h5 {
 
 .keyboard__key--dark {
   background: rgba(0, 0, 0, 0.25);
+}
+
+input:focus {
+  border: 1px solid #97b46c;
+}
+
+.autocomplete-wrap {
+  position: relative;
+}
+
+.autocomplete-input {
+  width: 100%;
+}
+
+.autocomplete-list {
+  position: absolute;
+  top: 100%;
+  border: 1px solid #97b46c;
+  width: 100%;
+  display: none;
+  z-index: 9999;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: #b3acac;
+}
+
+.autocomplete-wrap.active .autocomplete-list {
+  display: block;
+  border-radius: 0 0 3px 3px;
+}
+
+.autocomplete-item {
+  padding: 8px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #2e2e2e;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.focused {
+  background: #eee;
+}
+
+.autocomplete-wrap.active .autocomplete-input {
+  border-radius: 3px 3px 0 0;
+  border-bottom: 1px solid transparent;
 }
 
 /*# sourceMappingURL=style.css.map */

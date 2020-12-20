@@ -12,10 +12,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_openSection__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/openSection */ "./src/js/openSection.js");
 /* harmony import */ var _js_switchData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/switchData */ "./src/js/switchData.js");
 /* harmony import */ var _js_getDate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/getDate */ "./src/js/getDate.js");
-/* harmony import */ var _js_Keyboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/Keyboard */ "./src/js/Keyboard.js");
+/* harmony import */ var _js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/Autocomplete */ "./src/js/Autocomplete.js");
 
 
+ // import { Keyboard } from "./js/Keyboard";
 
+
+ // import { chart } from "./js/chart"
 
 window.addEventListener('DOMContentLoaded', function () {
   // развернуть секцию на весь экран
@@ -24,419 +27,164 @@ window.addEventListener('DOMContentLoaded', function () {
   (0,_js_switchData__WEBPACK_IMPORTED_MODULE_1__.switchData)(); //update date
 
   (0,_js_getDate__WEBPACK_IMPORTED_MODULE_2__.getDate)(); //keyboard
+  // Keyboard.init();
 
-  _js_Keyboard__WEBPACK_IMPORTED_MODULE_3__.Keyboard.init();
+  (0,_js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__.Autocomplete)('#input-select', _js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__.array1); // chart();
 });
 
 /***/ }),
 
-/***/ "./src/js/Keyboard.js":
-/*!****************************!*\
-  !*** ./src/js/Keyboard.js ***!
-  \****************************/
+/***/ "./src/js/Autocomplete.js":
+/*!********************************!*\
+  !*** ./src/js/Autocomplete.js ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Keyboard": () => /* binding */ Keyboard
+/* harmony export */   "array1": () => /* binding */ array1,
+/* harmony export */   "Autocomplete": () => /* binding */ Autocomplete
 /* harmony export */ });
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+var array1 = ["USA", "India", "Bosnia and Herzegovina", "Brazil", "Russia", "France", "Turkey", "UK", "Italy", "Spain", "Argentina", "Germany", "Colombia", "Mexico", "Poland", "Iran", "Peru", "Ukraine", "South Africa", "Netherlands", "Indonesia", "Belgium", "Czechia", "Romania", "Chile", "Iraq", "Canada", "Bangladesh", "Philippines", "Pakistan", "Morocco", "Switzerland", "Israel", "Portugal", "Sweden", "Saudi Arabia"];
+var Autocomplete = function Autocomplete(selector, data) {
+  var inputs = document.querySelectorAll(selector);
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-var Keyboard = {
-  elements: {
-    main: null,
-    keysContainer: null,
-    keys: [],
-    input: document.querySelectorAll("#input-select")[0]
-  },
-  eventHandlers: {
-    oninput: null,
-    onclose: null
-  },
-  properties: {
-    value: "",
-    capsLock: false,
-    shift: false,
-    sound: false,
-    language: "en",
-    stepLeft: 0,
-    stepRight: 0,
-    positionX: 0
-  },
-  init: function init() {
-    var _this = this;
-
-    this.elements.main = document.createElement("div");
-    this.elements.keysContainer = document.createElement("div");
-    this.elements.main.classList.add("keyboard", "keyboard--hidden");
-    this.elements.keysContainer.classList.add("keyboard__keys");
-    this.elements.keysContainer.appendChild(this._createKeys());
-    this.elements.keys = this.elements.keysContainer.querySelectorAll(".keyboard__key");
-    this.elements.main.appendChild(this.elements.keysContainer);
-    document.body.appendChild(this.elements.main);
-    this.elements.input.addEventListener('focus', function () {
-      _this.open(_this.elements.input.value, function (currentValue) {
-        _this.elements.input.value = currentValue;
-      });
-    });
-
-    function aaa(b) {
-      b.classList.remove("keyboard__press");
-    }
-
-    this.elements.input.addEventListener('keydown', function (e) {
-      for (var i = 0; i < _this.elements.keys.length; i++) {
-        if (_this.elements.keys[i].innerHTML === e.key.toLowerCase()) {
-          _this.elements.keys[i].classList.add("keyboard__press");
-
-          var b = _this.elements.keys[i];
-          setTimeout(aaa, 500, b);
-        }
-      }
-
-      if (e.key === 'Backspace') {
-        var button = _this.elements.keys[10];
-        button.classList.add("keyboard__press");
-        setTimeout(aaa, 500, button);
-      }
-
-      if (e.key === 'CapsLock') {
-        var _button = _this.elements.keys[23];
-
-        _button.classList.add("keyboard__press");
-
-        setTimeout(aaa, 500, _button);
-      }
-
-      if (e.key === 'Enter') {
-        var _button2 = _this.elements.keys[35];
-
-        _button2.classList.add("keyboard__press");
-
-        setTimeout(aaa, 500, _button2);
-      }
-
-      if (e.key === 'Shift') {
-        var _button3 = _this.elements.keys[48];
-
-        _button3.classList.add("keyboard__press");
-
-        setTimeout(aaa, 500, _button3);
-      }
-
-      if (e.key === ' ') {
-        var _button4 = _this.elements.keys[49];
-
-        _button4.classList.add("keyboard__press");
-
-        setTimeout(aaa, 500, _button4);
-      }
-    });
-  },
-  _createKeys: function _createKeys() {
-    var _this2 = this;
-
-    var fragment = document.createDocumentFragment();
-    var keyLayout = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter", "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift", "space", "en", "left", "right"];
-    var keyLayoutRu = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter", "done", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "shift", "space", "ru", "left", "right"];
-
-    var createIconHTML = function createIconHTML(icon_name) {
-      return "<i class=\"material-icons\">".concat(icon_name, "</i>");
-    };
-
-    keyLayout.forEach(function (key) {
-      var keyElement = document.createElement("button");
-      var insertLineBreak = ["backspace", "]", "enter", "/"].indexOf(key) !== -1;
-      keyElement.setAttribute("type", "button");
-      keyElement.classList.add("keyboard__key");
-
-      switch (key) {
-        case "left":
-          keyElement.innerHTML = createIconHTML("arrow_back");
-          keyElement.addEventListener('click', function () {
-            if (_this2.properties.positionX !== 0) {
-              _this2.properties.stepLeft++;
-            }
-
-            _this2.elements.input.focus();
-
-            _this2.properties.positionX = _this2.elements.input.value.length - _this2.properties.stepLeft + _this2.properties.stepRight;
-
-            _this2.elements.input.setSelectionRange(_this2.properties.positionX, _this2.properties.positionX);
-          });
-          break;
-
-        case "right":
-          keyElement.innerHTML = createIconHTML("arrow_forward");
-          keyElement.addEventListener('click', function () {
-            if (_this2.properties.positionX !== _this2.elements.input.value.length) {
-              _this2.properties.stepRight++;
-            }
-
-            _this2.elements.input.focus();
-
-            _this2.properties.positionX = _this2.elements.input.value.length - _this2.properties.stepLeft + _this2.properties.stepRight;
-
-            _this2.elements.input.setSelectionRange(_this2.properties.positionX, _this2.properties.positionX);
-          });
-          break;
-
-        case "backspace":
-          keyElement.classList.add("keyboard__key--wide");
-          keyElement.innerHTML = createIconHTML("backspace");
-          keyElement.addEventListener("click", function () {
-            if (_this2.properties.stepLeft === 0) {
-              _this2.properties.value = _this2.properties.value.substring(0, _this2.properties.value.length - 1);
-            } else {
-              _this2.properties.value = _this2.properties.value.substr(0, _this2.properties.positionX - 1) + _this2.properties.value.substr(_this2.properties.positionX, _this2.properties.value.length - _this2.properties.positionX);
-            }
-
-            _this2._triggerEvent("oninput");
-
-            _this2.properties.stepRight--;
-            _this2.properties.stepLeft--;
-            _this2.properties.positionX = _this2.elements.input.value.length - _this2.properties.stepLeft + _this2.properties.stepRight;
-
-            _this2.elements.input.setSelectionRange(_this2.properties.positionX, _this2.properties.positionX);
-
-            _this2.elements.input.focus();
-          });
-          break;
-
-        case "sound":
-          keyElement.classList.add("keyboard__key--activatable");
-          keyElement.innerHTML = createIconHTML("volume_mute");
-          keyElement.addEventListener("click", function () {
-            _this2.properties.sound = !_this2.properties.sound;
-            keyElement.classList.toggle("keyboard__key--active", _this2.properties.sound);
-          });
-          break;
-
-        case "caps":
-          keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
-          keyElement.innerHTML = createIconHTML("keyboard_capslock");
-          keyElement.addEventListener("click", function () {
-            _this2._toggleCapsLock();
-
-            keyElement.classList.toggle("keyboard__key--active", _this2.properties.capsLock);
-          });
-          break;
-
-        case "shift":
-          keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
-          keyElement.innerHTML = "shift";
-          keyElement.addEventListener("click", function () {
-            _this2._toggleShift();
-
-            keyElement.classList.toggle("keyboard__key--active", _this2.properties.shift);
-          });
-          break;
-
-        case "enter":
-          keyElement.classList.add("keyboard__key--wide");
-          keyElement.innerHTML = createIconHTML("keyboard_return");
-          keyElement.addEventListener("click", function () {
-            _this2.properties.value += "\n";
-
-            _this2._triggerEvent("oninput");
-          });
-          break;
-
-        case "space":
-          keyElement.classList.add("keyboard__key--extra-wide");
-          keyElement.innerHTML = createIconHTML("space_bar");
-          keyElement.addEventListener("click", function () {
-            _this2.properties.value += " ";
-
-            _this2._triggerEvent("oninput");
-          });
-          break;
-
-        case "done":
-          keyElement.classList.add("keyboard__key--wide", "keyboard__key--dark");
-          keyElement.innerHTML = createIconHTML("check_circle");
-          keyElement.addEventListener("click", function () {
-            _this2.close();
-
-            _this2._triggerEvent("onclose");
-          });
-          break;
-
-        case "en":
-          keyElement.innerHTML = _this2.properties.language;
-          keyElement.addEventListener("click", function () {
-            _this2.properties.language === "en" ? _this2.properties.language = "ru" : _this2.properties.language = "en";
-            keyElement.innerHTML = _this2.properties.language;
-            var keyArray = ["backspace", "caps", "enter", "done", "shift", "space"];
-
-            if (_this2.properties.language === "ru") {
-              for (var i = 0; i < _this2.elements.keys.length; i++) {
-                if (_this2.elements.keys[i].innerHTML.substring(0, 2) !== "<i") {
-                  _this2.elements.keys[i].innerHTML = keyLayoutRu[i];
-                }
-              }
-            } else {
-              for (var _i = 0; _i < _this2.elements.keys.length; _i++) {
-                if (_this2.elements.keys[_i].innerHTML.substring(0, 2) !== "<i") {
-                  _this2.elements.keys[_i].innerHTML = keyLayout[_i];
-                }
-              }
-            }
-          });
-          break;
-
-        default:
-          keyElement.textContent = key.toLowerCase();
-          keyElement.addEventListener("click", function () {
-            _this2.properties.positionX = _this2.elements.input.value.length - _this2.properties.stepLeft + _this2.properties.stepRight;
-            key = keyElement.textContent;
-            _this2.properties.value = _this2.properties.value.substr(0, _this2.properties.positionX) + key + _this2.properties.value.substr(_this2.properties.positionX, _this2.properties.value.length - _this2.properties.positionX);
-
-            _this2._triggerEvent("oninput");
-
-            _this2.elements.input.setSelectionRange(_this2.properties.positionX + 1, _this2.properties.positionX + 1);
-
-            _this2.elements.input.focus();
-          });
-          break;
-      }
-
-      fragment.appendChild(keyElement);
-
-      if (insertLineBreak) {
-        fragment.appendChild(document.createElement("br"));
-      }
-    });
-    return fragment;
-  },
-  _triggerEvent: function _triggerEvent(handlerName) {
-    if (typeof this.eventHandlers[handlerName] == "function") {
-      this.eventHandlers[handlerName](this.properties.value);
-    }
-  },
-  _toggleCapsLock: function _toggleCapsLock() {
-    this.properties.capsLock = !this.properties.capsLock;
-    this.elements.input.focus();
-
-    var _iterator = _createForOfIteratorHelper(this.elements.keys),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var key = _step.value;
-
-        if (key.childElementCount === 0 && key.innerHTML !== 'shift' && key.innerHTML !== 'ru' && key.innerHTML !== 'en') {
-          key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
-        }
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-  },
-  _toggleShift: function _toggleShift() {
-    var keysShift;
-    this.properties.shift = !this.properties.shift;
-
-    if (!this.properties.shift && this.properties.language === 'en') {
-      keysShift = {
-        '0': "1",
-        '1': "2",
-        '2': "3",
-        '3': "4",
-        '4': "5",
-        '5': "6",
-        '6': "7",
-        '7': "8",
-        '8': "9",
-        '9': "0",
-        '21': "[",
-        '22': "]",
-        '33': ';',
-        '34': "'",
-        '44': ',',
-        '45': '.',
-        '46': '/'
-      };
-    } else if (this.properties.shift && this.properties.language === 'en') {
-      keysShift = {
-        '0': "!",
-        '1': "@",
-        '2': "#",
-        '3': "$",
-        '4': "%",
-        '5': "^",
-        '6': "&",
-        '7': "*",
-        '8': "(",
-        '9': ")",
-        '21': "{",
-        '22': "}",
-        '33': ':',
-        '34': '"',
-        '44': '<',
-        '45': '>',
-        '46': '?'
-      };
-    } else if (this.properties.shift && this.properties.language === 'ru') {
-      keysShift = {
-        '0': "!",
-        '1': "'",
-        '2': "№",
-        '3': ";",
-        '4': "%",
-        '5': ":",
-        '6': "?",
-        '7': "*",
-        '8': "(",
-        '9': ")",
-        '46': ","
-      };
-    } else {
-      keysShift = {
-        '0': "1",
-        '1': "2",
-        '2': "3",
-        '3': "4",
-        '4': "5",
-        '5': "6",
-        '6': "7",
-        '7': "8",
-        '8': "9",
-        '9': "0",
-        '46': '.'
-      };
-    }
-
-    for (var i = 0; i < this.elements.keys.length; i++) {
-      if (i in keysShift) {
-        this.elements.keys[i].innerHTML = keysShift[i];
-      }
-    }
-
-    this._toggleCapsLock();
-  },
-  _changeLanguage: function _changeLanguage() {
-    var keyLayout = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter", "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "shift", "space", "en"];
-    var keyLayoutRu = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace", "Р№", "С†", "Сѓ", "Рє", "Рµ", "РЅ", "Рі", "С€", "С‰", "Р·", "С…", "СЉ", "caps", "С„", "С‹", "РІ", "Р°", "Рї", "СЂ", "Рѕ", "Р»", "Рґ", "Р¶", "СЌ", "enter", "done", "СЏ", "С‡", "СЃ", "Рј", "Рё", "С‚", "СЊ", "Р±", "СЋ", ".", "shift", "space", "en"];
-  },
-  open: function open(initialValue, oninput, onclose) {
-    this.properties.value = initialValue || "";
-    this.eventHandlers.oninput = oninput;
-    this.eventHandlers.onclose = onclose;
-    this.elements.main.classList.remove("keyboard--hidden");
-  },
-  close: function close() {
-    this.properties.value = "";
-    this.eventHandlers.oninput = oninput;
-    this.eventHandlers.onclose = onclose;
-    this.elements.main.classList.add("keyboard--hidden");
+  function ciSearch() {
+    var what = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var where = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+    return where.toUpperCase().search(what.toUpperCase());
   }
+
+  inputs.forEach(function (input) {
+    input.classList.add('autocomplete-input');
+    var wrap = document.createElement('div');
+    wrap.className = 'autocomplete-wrap';
+    input.parentNode.insertBefore(wrap, input);
+    wrap.appendChild(input);
+    var list = document.createElement('div');
+    list.className = 'autocomplete-list';
+    wrap.appendChild(list);
+    var matches = [];
+    var listItems = [];
+    var focusedItem = -1;
+
+    function setActive() {
+      var active = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      if (active) wrap.classList.add('active');else wrap.classList.remove('active');
+    }
+
+    function focusItem(index) {
+      if (!listItems.length) return false;
+      if (index > listItems.length - 1) return focusItem(0);
+      if (index < 0) return focusItem(listItems.length - 1);
+      focusedItem = index;
+      unfocusAllItems();
+      listItems[focusedItem].classList.add('focused');
+    }
+
+    function unfocusAllItems() {
+      listItems.forEach(function (item) {
+        item.classList.remove('focused');
+      });
+    }
+
+    function selectItem(index) {
+      if (!listItems[index]) return false;
+      input.value = listItems[index].innerText;
+      setActive(false);
+    }
+
+    input.addEventListener('input', function (e) {
+      var value = input.value;
+      if (!value) return setActive(false);
+      list.innerHTML = '';
+      listItems = [];
+      data.forEach(function (dataItem, index) {
+        var search = ciSearch(value, dataItem);
+
+        if (search === -1) {
+          return false;
+        }
+
+        matches.push(index);
+        var parts = [dataItem.substr(0, search), dataItem.substr(search, value.length), dataItem.substr(search + value.length, dataItem.length - search - value.length)];
+        var item = document.createElement('div');
+        item.className = 'autocomplete-item';
+        item.innerHTML = parts[0] + '<strong>' + parts[1] + '</strong>' + parts[2];
+        list.appendChild(item);
+        listItems.push(item);
+        item.addEventListener('click', function () {
+          selectItem(listItems.indexOf(item));
+          searchListCountry();
+          listItems = [];
+        });
+      });
+
+      if (listItems.length > 0) {
+        focusItem(0);
+        setActive(true);
+      } else setActive(false);
+    });
+    input.addEventListener('keydown', function (e) {
+      var keyCode = e.keyCode;
+
+      if (keyCode === 40) {
+        // arrow down
+        e.preventDefault();
+        focusedItem++;
+        focusItem(focusedItem);
+      } else if (keyCode === 38) {
+        //arrow up
+        e.preventDefault();
+        if (focusedItem > 0) focusedItem--;
+        focusItem(focusedItem);
+      } else if (keyCode === 27) {
+        // escape
+        setActive(false);
+      } else if (keyCode === 13) {
+        // enter
+        selectItem(focusedItem);
+        searchListCountry();
+
+        if (input.value === '') {
+          document.location.reload();
+        }
+      }
+    });
+    input.addEventListener('focus', function (e) {
+      input.value = '';
+    }); ////////////// 
+
+    function searchListCountry() {
+      var country = document.querySelectorAll('.case-country li');
+
+      if (input.value !== '') {
+        country.forEach(function (elem) {
+          if (elem.innerText.search(input.value) === -1) {
+            elem.classList.remove('country-active');
+          } else {
+            elem.classList.add('country-active');
+
+            for (var i = 0; i < elem.length; i++) {
+              var index = country[i].indexOf(elem[i]);
+              var removed = country[i].splice(index, 1);
+              country[i].unshift(removed[0]);
+            }
+          }
+        });
+      } else {
+        country.forEach(function (elem) {
+          elem.classList.remove('country-active');
+        }); // document.location.reload();
+      }
+    } // searchListCountry()
+    ///////////////
+
+
+    document.body.addEventListener('click', function (e) {
+      if (!wrap.contains(e.target)) setActive(false);
+    });
+  });
 };
 
 /***/ }),
