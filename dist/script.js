@@ -10,26 +10,26 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_openSection__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/openSection */ "./src/js/openSection.js");
-/* harmony import */ var _js_switchData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/switchData */ "./src/js/switchData.js");
-/* harmony import */ var _js_getDate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/getDate */ "./src/js/getDate.js");
-/* harmony import */ var _js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/Autocomplete */ "./src/js/Autocomplete.js");
-
+/* harmony import */ var _js_getDate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/getDate */ "./src/js/getDate.js");
+/* harmony import */ var _js_Autocomplete__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/Autocomplete */ "./src/js/Autocomplete.js");
+/* harmony import */ var _js_apiCountry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/apiCountry */ "./src/js/apiCountry.js");
 
  // import { Keyboard } from "./js/Keyboard";
 
 
+
  // import { chart } from "./js/chart"
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('DOMContentLoaded', () => {
   // развернуть секцию на весь экран
-  (0,_js_openSection__WEBPACK_IMPORTED_MODULE_0__.openSection)(); // слайдер
+  (0,_js_openSection__WEBPACK_IMPORTED_MODULE_0__.openSection)(); //update date
 
-  (0,_js_switchData__WEBPACK_IMPORTED_MODULE_1__.switchData)(); //update date
-
-  (0,_js_getDate__WEBPACK_IMPORTED_MODULE_2__.getDate)(); //keyboard
+  (0,_js_getDate__WEBPACK_IMPORTED_MODULE_1__.getDate)(); //keyboard
   // Keyboard.init();
 
-  (0,_js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__.Autocomplete)('#input-select', _js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__.array1); // chart();
+  (0,_js_Autocomplete__WEBPACK_IMPORTED_MODULE_2__.Autocomplete)('#input-select', _js_apiCountry__WEBPACK_IMPORTED_MODULE_3__.array1); // chart();
+
+  (0,_js_apiCountry__WEBPACK_IMPORTED_MODULE_3__.getDataCountries)();
 });
 
 /***/ }),
@@ -42,34 +42,31 @@ window.addEventListener('DOMContentLoaded', function () {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "array1": () => /* binding */ array1,
 /* harmony export */   "Autocomplete": () => /* binding */ Autocomplete
 /* harmony export */ });
-var array1 = ["USA", "India", "Bosnia and Herzegovina", "Brazil", "Russia", "France", "Turkey", "UK", "Italy", "Spain", "Argentina", "Germany", "Colombia", "Mexico", "Poland", "Iran", "Peru", "Ukraine", "South Africa", "Netherlands", "Indonesia", "Belgium", "Czechia", "Romania", "Chile", "Iraq", "Canada", "Bangladesh", "Philippines", "Pakistan", "Morocco", "Switzerland", "Israel", "Portugal", "Sweden", "Saudi Arabia"];
-var Autocomplete = function Autocomplete(selector, data) {
-  var inputs = document.querySelectorAll(selector);
+// export let array1 = ["USA", "India", "Bosnia and Herzegovina", "Brazil", "Russia", "France", "Turkey", "UK", "Italy", "Spain", "Argentina", "Germany", "Colombia", "Mexico", "Poland", "Iran", "Peru", "Ukraine", "South Africa", "Netherlands", "Indonesia", "Belgium", "Czechia", "Romania", "Chile", "Iraq", "Canada", "Bangladesh", "Philippines", "Pakistan", "Morocco", "Switzerland", "Israel", "Portugal", "Sweden", "Saudi Arabia"];
+// import { array1 } from "./js/apiCountry";
+const Autocomplete = (selector, data) => {
+  let inputs = document.querySelectorAll(selector);
 
-  function ciSearch() {
-    var what = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-    var where = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  function ciSearch(what = '', where = '') {
     return where.toUpperCase().search(what.toUpperCase());
   }
 
-  inputs.forEach(function (input) {
+  inputs.forEach(input => {
     input.classList.add('autocomplete-input');
-    var wrap = document.createElement('div');
+    let wrap = document.createElement('div');
     wrap.className = 'autocomplete-wrap';
     input.parentNode.insertBefore(wrap, input);
     wrap.appendChild(input);
-    var list = document.createElement('div');
+    let list = document.createElement('div');
     list.className = 'autocomplete-list';
     wrap.appendChild(list);
-    var matches = [];
-    var listItems = [];
-    var focusedItem = -1;
+    let matches = [];
+    let listItems = [];
+    let focusedItem = -1;
 
-    function setActive() {
-      var active = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+    function setActive(active = true) {
       if (active) wrap.classList.add('active');else wrap.classList.remove('active');
     }
 
@@ -83,7 +80,7 @@ var Autocomplete = function Autocomplete(selector, data) {
     }
 
     function unfocusAllItems() {
-      listItems.forEach(function (item) {
+      listItems.forEach(item => {
         item.classList.remove('focused');
       });
     }
@@ -94,21 +91,21 @@ var Autocomplete = function Autocomplete(selector, data) {
       setActive(false);
     }
 
-    input.addEventListener('input', function (e) {
-      var value = input.value;
+    input.addEventListener('input', e => {
+      let value = input.value;
       if (!value) return setActive(false);
       list.innerHTML = '';
       listItems = [];
-      data.forEach(function (dataItem, index) {
-        var search = ciSearch(value, dataItem);
+      data.forEach((dataItem, index) => {
+        let search = ciSearch(value, dataItem);
 
         if (search === -1) {
           return false;
         }
 
         matches.push(index);
-        var parts = [dataItem.substr(0, search), dataItem.substr(search, value.length), dataItem.substr(search + value.length, dataItem.length - search - value.length)];
-        var item = document.createElement('div');
+        let parts = [dataItem.substr(0, search), dataItem.substr(search, value.length), dataItem.substr(search + value.length, dataItem.length - search - value.length)];
+        let item = document.createElement('div');
         item.className = 'autocomplete-item';
         item.innerHTML = parts[0] + '<strong>' + parts[1] + '</strong>' + parts[2];
         list.appendChild(item);
@@ -125,8 +122,8 @@ var Autocomplete = function Autocomplete(selector, data) {
         setActive(true);
       } else setActive(false);
     });
-    input.addEventListener('keydown', function (e) {
-      var keyCode = e.keyCode;
+    input.addEventListener('keydown', e => {
+      let keyCode = e.keyCode;
 
       if (keyCode === 40) {
         // arrow down
@@ -151,29 +148,29 @@ var Autocomplete = function Autocomplete(selector, data) {
         }
       }
     });
-    input.addEventListener('focus', function (e) {
+    input.addEventListener('focus', e => {
       input.value = '';
     }); ////////////// 
 
     function searchListCountry() {
-      var country = document.querySelectorAll('.case-country li');
+      let country = document.querySelectorAll('.case-country li');
 
       if (input.value !== '') {
-        country.forEach(function (elem) {
+        country.forEach(elem => {
           if (elem.innerText.search(input.value) === -1) {
             elem.classList.remove('country-active');
           } else {
             elem.classList.add('country-active');
 
-            for (var i = 0; i < elem.length; i++) {
-              var index = country[i].indexOf(elem[i]);
-              var removed = country[i].splice(index, 1);
+            for (let i = 0; i < elem.length; i++) {
+              let index = country[i].indexOf(elem[i]);
+              let removed = country[i].splice(index, 1);
               country[i].unshift(removed[0]);
             }
           }
         });
       } else {
-        country.forEach(function (elem) {
+        country.forEach(elem => {
           elem.classList.remove('country-active');
         }); // document.location.reload();
       }
@@ -189,6 +186,183 @@ var Autocomplete = function Autocomplete(selector, data) {
 
 /***/ }),
 
+/***/ "./src/js/apiCountry.js":
+/*!******************************!*\
+  !*** ./src/js/apiCountry.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "array1": () => /* binding */ array1,
+/* harmony export */   "getDataCountries": () => /* binding */ getDataCountries
+/* harmony export */ });
+const array1 = []; // массив самих стран
+
+const arrayList = []; // массив обьектов с информациях о странах
+// дефолтные свойства, по которым изначально все сортируется
+
+let sortPropertyCases = "TotalCases";
+let sortPropertyDeathes = "Deathes";
+let sortPropertyRecovered = "Recovered"; // глобальные данные для мира
+
+const globalCases = document.querySelector('.cases');
+const globalDeathes = document.querySelector('.deathes');
+const globalRecovered = document.querySelector('.recovered'); // каждый список с общими случаями, смертями и выздоравлениями
+
+const listCases = document.querySelector('.list_of_countries_cases');
+const listDeathes = document.querySelector('.list_of_countries_deathes');
+const listRecovereds = document.querySelector('.list_of_countries_recovered'); // заголовки, содержащие информацию, которая отражена в списке
+
+const headlineCases = document.querySelector('.headline_cases');
+const headlineDeathes = document.querySelector('.headline_deathes');
+const headlineRecovereds = document.querySelector('.headline_recovered'); // кнопки перелистывания право
+
+const nextButtonCases = document.querySelector('.right-button-cases');
+const nextButtonDeathes = document.querySelector('.right-button-deathes');
+const nextButtonRecovered = document.querySelector('.right-button-recovered'); // кнопки перелистывания влево
+
+const prevButtonCases = document.querySelector('.left-button-cases');
+const prevButtonDeathes = document.querySelector('.left-button-deathes');
+const prevButtonRecovered = document.querySelector('.left-button-recovered'); // свойства, по которым сортируются общие случаи
+
+const propsCases = ["TotalCases", "TodayCases", "TodayCasesPer100th", "TotalCasesPer100th"]; // свойства, по которым сортируются выздоровленные
+
+const propsRecovered = ["Recovered", "TodayRecovered", "TodayRecoveredPer100th", "RecoveredPer100th"]; // свойства, по которым сортируются смерти
+
+const propsDeathes = ["Deathes", "DeathesPer100th", "TodayDeathes", "TodayDeathesPer100th"];
+const getDataCountries = () => {
+  // получаем список стран
+  getAllCountries(array1); // получаем глобальные переменные
+
+  getGlobalValues();
+}; // функция получения информации о стране по API
+
+async function getListCountries(array) {
+  for (let i = 0; i < array.length; i++) {
+    const countryName = array[i];
+    const resu = await fetch(`https://corona.lmao.ninja/v2/countries/${countryName}?yesterday&strict&query%20`);
+    const data = await resu.json();
+
+    if (data.message !== 'Country not found or doesn\'t have any cases') {
+      arrayList.push({
+        Country: data.country,
+        TotalCases: data.cases,
+        Deathes: data.deaths,
+        Recovered: data.recovered,
+        Flag: data.countryInfo.flag,
+        TodayCases: data.todayCases,
+        TodayDeathes: data.todayDeaths,
+        TodayRecovered: data.todayRecovered,
+        TotalCasesPer100th: Math.floor(data.cases / data.population * 10 ** 5),
+        DeathesPer100th: Math.floor(data.deaths / data.population * 10 ** 5),
+        RecoveredPer100th: Math.floor(data.recovered / data.population * 10 ** 5),
+        TodayCasesPer100th: Math.floor(data.todayCases / data.population * 10 ** 5),
+        TodayDeathesPer100th: Math.floor(data.todayDeaths / data.population * 10 ** 5),
+        TodayRecoveredPer100th: Math.floor(data.todayRecovered / data.population * 10 ** 5)
+      });
+    }
+  } // создаем те самые списки стран 
+
+
+  createList(arrayList, sortPropertyCases, listCases, headlineCases);
+  createList(arrayList, sortPropertyDeathes, listDeathes, headlineDeathes);
+  createList(arrayList, sortPropertyRecovered, listRecovereds, headlineRecovereds);
+  nextButtonCases.addEventListener('click', () => {
+    sortPropertyCases = nextList(sortPropertyCases, propsCases, arrayList, listCases, headlineCases);
+  });
+  nextButtonDeathes.addEventListener('click', () => {
+    sortPropertyDeathes = nextList(sortPropertyDeathes, propsDeathes, arrayList, listDeathes, headlineDeathes);
+  });
+  nextButtonRecovered.addEventListener('click', () => {
+    sortPropertyRecovered = nextList(sortPropertyRecovered, propsRecovered, arrayList, listRecovereds, headlineRecovereds);
+  });
+  prevButtonCases.addEventListener('click', () => {
+    sortPropertyCases = prevList(sortPropertyCases, propsCases, arrayList, listCases, headlineCases);
+  });
+  prevButtonDeathes.addEventListener('click', () => {
+    sortPropertyDeathes = prevList(sortPropertyDeathes, propsDeathes, arrayList, listDeathes, headlineDeathes);
+  });
+  prevButtonRecovered.addEventListener('click', () => {
+    sortPropertyRecovered = prevList(sortPropertyRecovered, propsRecovered, arrayList, listRecovereds, headlineRecovereds);
+  });
+} // высчитывание индекса, свойства которое должно вывести следующим
+
+
+function nextList(prop, arrayProps, array, element, headline) {
+  let index = arrayProps.indexOf(prop);
+
+  if (index == arrayProps.length - 1) {
+    index = 0;
+  } else {
+    index = index + 1;
+  }
+
+  createList(array, arrayProps[index], element, headline);
+  return arrayProps[index];
+} // высчитывание индекса, свойства которое было до этого 
+
+
+function prevList(prop, arrayProps, array, element, headline) {
+  let index = arrayProps.indexOf(prop);
+
+  if (index === 0) {
+    index = arrayProps.length - 1;
+  } else {
+    index -= 1;
+  }
+
+  createList(array, arrayProps[index], element, headline);
+  return arrayProps[index];
+} // получения списка 101 страны из API
+
+
+async function getAllCountries(array) {
+  const resu = await fetch(`https://corona.lmao.ninja/v2/countries/`);
+  const data = await resu.json();
+  data.sort((prev, next) => next.cases - prev.cases);
+
+  for (let i = 0; i <= 100; i++) {
+    array.push(data[i].country);
+  }
+
+  getListCountries(array);
+} // получение из API и вывод глобльных данных 
+
+
+async function getGlobalValues() {
+  const resu = await fetch(`https://corona.lmao.ninja/v2/all?yesterday`);
+  const data = await resu.json();
+  globalCases.innerHTML = data.cases;
+  globalDeathes.innerHTML = data.deaths;
+  globalRecovered.innerHTML = data.recovered;
+} // получаем список стран
+//  getAllCountries(array1)
+// получаем глобальные переменные
+//  getGlobalValues()
+// создаем список стран
+
+
+function createList(array, prop, element, headline) {
+  headline.innerHTML = prop;
+  element.innerHTML = '';
+  let sortArray = array.sort((prev, next) => next[prop] - prev[prop]);
+  const list = document.createElement('ul');
+  list.className = 'case-country';
+
+  for (let i = 0; i < sortArray.length; i++) {
+    const li = document.createElement('li');
+    li.className = 'country';
+    li.innerHTML = `<span class="color-prop">${sortArray[i][prop]}</span> <span><img class="map-icon" src="${sortArray[i].Flag}" alt="icon map" > </span>
+                        <span>${sortArray[i].Country}</span>`;
+    list.append(li);
+  }
+
+  element.append(list);
+}
+
+/***/ }),
+
 /***/ "./src/js/getDate.js":
 /*!***************************!*\
   !*** ./src/js/getDate.js ***!
@@ -199,14 +373,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getDate": () => /* binding */ getDate
 /* harmony export */ });
-var getDate = function getDate() {
-  var day = document.querySelector('.global-case-date');
-  var today = new Date();
-  var date = today.getDate();
-  var month = today.getMonth() + 1;
-  var year = today.getFullYear();
+const getDate = () => {
+  let day = document.querySelector('.global-case-date');
+  let today = new Date();
+  let date = today.getDate();
+  let month = today.getMonth() + 1;
+  let year = today.getFullYear();
   console.log(date);
-  day.innerHTML = "".concat(month, "/").concat(date, "/").concat(year);
+  day.innerHTML = `${month}/${date}/${year}`;
 };
 
 /***/ }),
@@ -221,157 +395,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "openSection": () => /* binding */ openSection
 /* harmony export */ });
-var openSection = function openSection() {
+const openSection = () => {
   showButton();
-  var sections = document.querySelectorAll('.main-subtable');
-  var btns = document.querySelectorAll('.circle-btn');
+  let sections = document.querySelectorAll('.main-subtable');
+  let btns = document.querySelectorAll('.circle-btn');
 
-  var _loop = function _loop(i) {
+  for (let i = 0; i < btns.length; i += 1) {
     if (btns[i]) {
-      btns[i].addEventListener('click', function (e) {
+      btns[i].addEventListener('click', e => {
         sections[i].classList.toggle('main-subtable-open');
       });
     }
-  };
-
-  for (var i = 0; i < btns.length; i += 1) {
-    _loop(i);
   }
 };
 
-var showButton = function showButton() {
-  var sections = document.querySelectorAll('.main-subtable');
-  var btns = document.querySelectorAll('.circle-btn');
+const showButton = () => {
+  let sections = document.querySelectorAll('.main-subtable');
+  let btns = document.querySelectorAll('.circle-btn');
 
-  var _loop2 = function _loop2(i) {
-    sections[i].addEventListener('mouseover', function () {
+  for (let i = 0; i < sections.length; i += 1) {
+    sections[i].addEventListener('mouseover', () => {
       btns[i].style.display = 'block';
     });
-    sections[i].addEventListener('mouseleave', function () {
+    sections[i].addEventListener('mouseleave', () => {
       btns[i].style.display = 'none';
     });
-  };
-
-  for (var i = 0; i < sections.length; i += 1) {
-    _loop2(i);
   }
-};
-
-/***/ }),
-
-/***/ "./src/js/switchData.js":
-/*!******************************!*\
-  !*** ./src/js/switchData.js ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "switchData": () => /* binding */ switchData
-/* harmony export */ });
-var switchData = function switchData() {
-  getSliderGlobalCase();
-  getSliderGlobalDeaths();
-  getSliderGlobalRecovered();
-};
-
-var getSliderGlobalCase = function getSliderGlobalCase() {
-  var sliderGlobal = document.querySelectorAll('.slide-global');
-  var current = 0;
-
-  function flipSliderCase() {
-    for (var i = 0; i < sliderGlobal.length; i += 1) {
-      sliderGlobal[i].classList.add('opacity0');
-    }
-
-    sliderGlobal[current].classList.remove('opacity0');
-  }
-
-  flipSliderCase();
-  document.querySelector('.global-case-left').addEventListener('click', function (e) {
-    if (current - 1 === -1) {
-      current = sliderGlobal.length - 1;
-    } else {
-      current -= 1;
-    }
-
-    flipSliderCase();
-  });
-  document.querySelector('.global-case-right').addEventListener('click', function (e) {
-    if (current + 1 === sliderGlobal.length) {
-      current = 0;
-    } else {
-      current += 1;
-    }
-
-    flipSliderCase();
-  });
-};
-
-var getSliderGlobalDeaths = function getSliderGlobalDeaths() {
-  var sliderDeaths = document.querySelectorAll('.slider-deaths');
-  var current = 0;
-
-  function flipSliderDeaths() {
-    for (var i = 0; i < sliderDeaths.length; i += 1) {
-      sliderDeaths[i].classList.add('opacity0');
-    }
-
-    sliderDeaths[current].classList.remove('opacity0');
-  }
-
-  flipSliderDeaths();
-  document.querySelector('.deaths-left').addEventListener('click', function (e) {
-    if (current - 1 === -1) {
-      current = sliderDeaths.length - 1;
-    } else {
-      current -= 1;
-    }
-
-    flipSliderDeaths();
-  });
-  document.querySelector('.deaths-right').addEventListener('click', function (e) {
-    if (current + 1 === sliderDeaths.length) {
-      current = 0;
-    } else {
-      current += 1;
-    }
-
-    flipSliderDeaths();
-  });
-};
-
-var getSliderGlobalRecovered = function getSliderGlobalRecovered() {
-  var sliderRecovered = document.querySelectorAll('.slide-recovered');
-  var current = 0;
-
-  function flipSliderRecovered() {
-    for (var i = 0; i < sliderRecovered.length; i += 1) {
-      sliderRecovered[i].classList.add('opacity0');
-    }
-
-    sliderRecovered[current].classList.remove('opacity0');
-  }
-
-  flipSliderRecovered();
-  document.querySelector('.recovered-left').addEventListener('click', function (e) {
-    if (current - 1 === -1) {
-      current = sliderRecovered.length - 1;
-    } else {
-      current -= 1;
-    }
-
-    flipSliderRecovered();
-  });
-  document.querySelector('.recovered-right').addEventListener('click', function (e) {
-    if (current + 1 === sliderRecovered.length) {
-      current = 0;
-    } else {
-      current += 1;
-    }
-
-    flipSliderRecovered();
-  });
 };
 
 /***/ }),

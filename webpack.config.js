@@ -4,6 +4,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+// require('babel-polyfill');
+// require("babel-polyfill");
 
 
 module.exports = (env, options) => {
@@ -19,7 +21,12 @@ module.exports = (env, options) => {
 
             filename: 'script.js',
         },
+
+        // entry: ["babel-polyfill", "./src/index.js"],
+
+
         module: {
+
             rules: [{
                     test: /\.js$/,
                     exclude: /node_modules/,
@@ -49,6 +56,7 @@ module.exports = (env, options) => {
 
         },
         plugins: [
+
             new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({
                 template: 'index.html'

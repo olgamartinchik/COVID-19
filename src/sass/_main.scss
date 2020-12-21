@@ -89,6 +89,7 @@
     font-size: 30px;
     margin: 0 auto;
     margin-bottom: 5px;
+    text-align: center;
 }
 
 .global-case-sick {
@@ -109,15 +110,6 @@
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-}
-
-//titel absolute
-.table-title-sick,
-.table-title-country,
-.table-title-deaths,
-.table-title-recovered {
-    // position: absolute;
-    // top: 5px;
 }
 
 .table-title {
@@ -151,51 +143,6 @@
     }
 }
 
-//slider
-.slider-container {
-    height: 100%;
-    width: 100%;
-    // position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-}
-
-.infinity-slider {
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
-
-.case-slide {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    background-color: #282828;
-    transition: all ease .5s;
-    opacity: 1;
-    top: 0;
-    bottom: 0;
-}
-
-.infinity-slider .opacity0 {
-    opacity: 0;
-}
-
-//
-.color-sick {
-    color: rgb(230, 0, 0);
-}
-
-.color-recovered {
-    color: rgb(112, 168, 0);
-}
-
-.color-deaths {
-    opacity: 0.7;
-}
-
 .country {
     cursor: pointer;
     padding: 5px 0;
@@ -218,9 +165,24 @@
     overflow-x: hidden;
 }
 
-.case-country-sick {
-    overflow-y: scroll;
+.list_of_countries {
+    width: 100%;
+}
+
+.case-country-sick .case-country {
     height: 453px;
+}
+
+.case-country-sick .color-prop {
+    color: rgb(230, 0, 0);
+}
+
+.case-country-deathes .color-prop {
+    opacity: 0.7;
+}
+
+.case-country-recovered .color-prop {
+    color: rgb(112, 168, 0);
 }
 
 //close btn
@@ -260,4 +222,8 @@
     & .case-country {
         max-height: 500px;
     }
+}
+
+.map-icon {
+    width: 20px;
 }

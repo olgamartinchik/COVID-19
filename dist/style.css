@@ -167,7 +167,8 @@ h5 {
 .global-case {
   font-size: 30px;
   margin: 0 auto;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  text-align: center; }
 
 .global-case-sick {
   color: #e60000; }
@@ -208,41 +209,6 @@ h5 {
     cursor: pointer;
     color: #bdb7b7; }
 
-.slider-container {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  margin: 0 auto; }
-
-.infinity-slider {
-  height: 100%;
-  width: 100%;
-  position: relative; }
-
-.case-slide {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  background-color: #282828;
-  transition: all ease .5s;
-  opacity: 1;
-  top: 0;
-  bottom: 0; }
-
-.infinity-slider .opacity0 {
-  opacity: 0; }
-
-.color-sick {
-  color: #e60000; }
-
-.color-recovered {
-  color: #70a800; }
-
-.color-deaths {
-  opacity: 0.7; }
-
 .country {
   cursor: pointer;
   padding: 5px 0;
@@ -260,9 +226,20 @@ h5 {
   width: 100%;
   overflow-x: hidden; }
 
-.case-country-sick {
-  overflow-y: scroll;
+.list_of_countries {
+  width: 100%; }
+
+.case-country-sick .case-country {
   height: 453px; }
+
+.case-country-sick .color-prop {
+  color: #e60000; }
+
+.case-country-deathes .color-prop {
+  opacity: 0.7; }
+
+.case-country-recovered .color-prop {
+  color: #70a800; }
 
 .circle-btn {
   display: none;
@@ -292,6 +269,9 @@ h5 {
     font-size: 30px; }
   .main-subtable-open .case-country {
     max-height: 500px; }
+
+.map-icon {
+  width: 20px; }
 
 .footer {
   display: flex;
