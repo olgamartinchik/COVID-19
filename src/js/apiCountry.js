@@ -1,8 +1,8 @@
  export const array1 = [] // массив самих стран
  const arrayList = [] // массив обьектов с информациях о странах
-
- // дефолтные свойства, по которым изначально все сортируется
- let sortPropertyCases = "TotalCases"
+ let globalValues
+     // дефолтные свойства, по которым изначально все сортируется
+ let sortPropertyCases = "Total Cases"
  let sortPropertyDeathes = "Deathes"
  let sortPropertyRecovered = "Recovered"
 
@@ -33,26 +33,26 @@
 
  // свойства, по которым сортируются общие случаи
  const propsCases = [
-     "TotalCases",
-     "TodayCases",
-     "TodayCasesPer100th",
-     "TotalCasesPer100th"
+     "Total Cases",
+     "Today Cases",
+     "Today Cases/100th",
+     "Total Cases/100th"
  ]
 
  // свойства, по которым сортируются выздоровленные
  const propsRecovered = [
      "Recovered",
-     "TodayRecovered",
-     "TodayRecoveredPer100th",
-     "RecoveredPer100th"
+     "Today Recovered",
+     "Today Recovered/100th",
+     "Recovered/100th"
  ]
 
  // свойства, по которым сортируются смерти
  const propsDeathes = [
      "Deathes",
-     "DeathesPer100th",
-     "TodayDeathes",
-     "TodayDeathesPer100th"
+     "Deathes/100th",
+     "Today Deathes",
+     "Today Deathes/100th"
  ]
 
  export const getDataCountries = () => {
@@ -75,24 +75,25 @@
          if (data.message !== 'Country not found or doesn\'t have any cases') {
              arrayList.push({
                  Country: data.country,
-                 TotalCases: data.cases,
+                 "Total Cases": data.cases,
                  Deathes: data.deaths,
                  Recovered: data.recovered,
                  Flag: data.countryInfo.flag,
-                 TodayCases: data.todayCases,
-                 TodayDeathes: data.todayDeaths,
-                 TodayRecovered: data.todayRecovered,
-                 TotalCasesPer100th: Math.floor((data.cases / data.population) * 10 ** 5),
-                 DeathesPer100th: Math.floor((data.deaths / data.population) * 10 ** 5),
-                 RecoveredPer100th: Math.floor((data.recovered / data.population) * 10 ** 5),
-                 TodayCasesPer100th: Math.floor((data.todayCases / data.population) * 10 ** 5),
-                 TodayDeathesPer100th: Math.floor((data.todayDeaths / data.population) * 10 ** 5),
-                 TodayRecoveredPer100th: Math.floor((data.todayRecovered / data.population) * 10 ** 5)
+                 "Today Cases": data.todayCases,
+                 "Today Deathes": data.todayDeaths,
+                 "Today Recovered": data.todayRecovered,
+                 "Total Cases/100th": Math.floor((data.cases / data.population) * 10 ** 5),
+                 "Deathes/100th": Math.floor((data.deaths / data.population) * 10 ** 5),
+                 "Recovered/100th": Math.floor((data.recovered / data.population) * 10 ** 5),
+                 "Today Cases/100th": Math.floor((data.todayCases / data.population) * 10 ** 5),
+                 "Today Deathes/100th": Math.floor((data.todayDeaths / data.population) * 10 ** 5),
+                 "Today Recovered/100th": Math.floor((data.todayRecovered / data.population) * 10 ** 5)
 
              })
          }
-     }
 
+
+     }
      // создаем те самые списки стран 
      createList(arrayList, sortPropertyCases, listCases, headlineCases)
      createList(arrayList, sortPropertyDeathes, listDeathes, headlineDeathes)
@@ -129,7 +130,7 @@
      }
 
      createList(array, arrayProps[index], element, headline)
-
+     getGlobalValues()
      return arrayProps[index]
  }
  // высчитывание индекса, свойства которое было до этого 
@@ -142,7 +143,7 @@
      }
 
      createList(array, arrayProps[index], element, headline)
-
+     getGlobalValues()
      return arrayProps[index]
  }
 
@@ -163,9 +164,33 @@
  async function getGlobalValues() {
      const resu = await fetch(`https://corona.lmao.ninja/v2/all?yesterday`);
      const data = await resu.json();
-     globalCases.innerHTML = data.cases
-     globalDeathes.innerHTML = data.deaths
-     globalRecovered.innerHTML = data.recovered
+
+
+     globalValues = {
+         "Total Cases": data.cases,
+         Deathes: data.deaths,
+         Recovered: data.recovered,
+         "Today Cases": data.todayCases,
+         "Today Deathes": data.todayDeaths,
+         "Today Recovered": data.todayRecovered,
+         "Total Cases/100th": Math.floor((data.cases / data.population) * 10 ** 5),
+         "Deathes/100th": Math.floor((data.deaths / data.population) * 10 ** 5),
+         "Recovered/100th": Math.floor((data.recovered / data.population) * 10 ** 5),
+         "Today Cases/100th": Math.floor((data.todayCases / data.population) * 10 ** 5),
+         "Today Deathes/100th": Math.floor((data.todayDeaths / data.population) * 10 ** 5),
+         "Today Recovered/100th": Math.floor((data.todayRecovered / data.population) * 10 ** 5)
+
+     }
+     const valueCases = globalValues[sortPropertyCases].toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ')
+     const valueDeathes = globalValues[sortPropertyDeathes].toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ')
+     const valueRecovered = globalValues[sortPropertyRecovered].toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ')
+
+
+     globalCases.innerHTML = valueCases
+     globalDeathes.innerHTML = valueDeathes
+     globalRecovered.innerHTML = valueRecovered
+
+
  }
  // получаем список стран
  //  getAllCountries(array1)
@@ -181,8 +206,10 @@
      list.className = 'case-country'
      for (let i = 0; i < sortArray.length; i++) {
          const li = document.createElement('li')
+         let value = sortArray[i][prop].toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ')
+
          li.className = 'country'
-         li.innerHTML = `<span class="color-prop">${sortArray[i][prop]}</span> <span><img class="map-icon" src="${sortArray[i].Flag}" alt="icon map" > </span>
+         li.innerHTML = `<span class="color-prop">${value}</span> <span><img class="map-icon" src="${sortArray[i].Flag}" alt="icon map" > </span>
                         <span>${sortArray[i].Country}</span>`
          list.append(li)
      }
