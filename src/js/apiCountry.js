@@ -1,4 +1,4 @@
- const array1 = [] // массив самих стран
+ export const array1 = [] // массив самих стран
  const arrayList = [] // массив обьектов с информациях о странах
 
  // дефолтные свойства, по которым изначально все сортируется
@@ -54,6 +54,15 @@
      "TodayDeathes",
      "TodayDeathesPer100th"
  ]
+
+ export const getDataCountries = () => {
+
+     // получаем список стран
+     getAllCountries(array1)
+         // получаем глобальные переменные
+     getGlobalValues();
+
+ }
 
  // функция получения информации о стране по API
  async function getListCountries(array) {
@@ -159,21 +168,22 @@
      globalRecovered.innerHTML = data.recovered
  }
  // получаем список стран
- getAllCountries(array1)
-     // получаем глобальные переменные
- getGlobalValues()
+ //  getAllCountries(array1)
+ // получаем глобальные переменные
+ //  getGlobalValues()
 
  // создаем список стран
  function createList(array, prop, element, headline) {
      headline.innerHTML = prop
      element.innerHTML = ''
      let sortArray = array.sort((prev, next) => next[prop] - prev[prop])
-     const list = document.createElement('ol')
+     const list = document.createElement('ul')
+     list.className = 'case-country'
      for (let i = 0; i < sortArray.length; i++) {
          const li = document.createElement('li')
-         li.innerHTML = `<span><img src="${sortArray[i].Flag}" alt="" width="70px" height="50px"></span>
-                        <span>${sortArray[i].Country}</span>
-                        <span>${sortArray[i][prop]}</span>`
+         li.className = 'country'
+         li.innerHTML = `<span class="color-prop">${sortArray[i][prop]}</span> <span><img class="map-icon" src="${sortArray[i].Flag}" alt="icon map" > </span>
+                        <span>${sortArray[i].Country}</span>`
          list.append(li)
      }
 

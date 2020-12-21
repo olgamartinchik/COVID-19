@@ -1,4 +1,4 @@
-export const switchData = () => {
+const switchData = () => {
 
     getSliderGlobalCase();
     getSliderGlobalDeaths();

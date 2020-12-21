@@ -1,5 +1,5 @@
-export let array1 = ["USA", "India", "Bosnia and Herzegovina", "Brazil", "Russia", "France", "Turkey", "UK", "Italy", "Spain", "Argentina", "Germany", "Colombia", "Mexico", "Poland", "Iran", "Peru", "Ukraine", "South Africa", "Netherlands", "Indonesia", "Belgium", "Czechia", "Romania", "Chile", "Iraq", "Canada", "Bangladesh", "Philippines", "Pakistan", "Morocco", "Switzerland", "Israel", "Portugal", "Sweden", "Saudi Arabia"];
-
+// export let array1 = ["USA", "India", "Bosnia and Herzegovina", "Brazil", "Russia", "France", "Turkey", "UK", "Italy", "Spain", "Argentina", "Germany", "Colombia", "Mexico", "Poland", "Iran", "Peru", "Ukraine", "South Africa", "Netherlands", "Indonesia", "Belgium", "Czechia", "Romania", "Chile", "Iraq", "Canada", "Bangladesh", "Philippines", "Pakistan", "Morocco", "Switzerland", "Israel", "Portugal", "Sweden", "Saudi Arabia"];
+// import { array1 } from "./js/apiCountry";
 
 export const Autocomplete = (selector, data) => {
 
