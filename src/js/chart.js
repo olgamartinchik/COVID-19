@@ -1,22 +1,86 @@
-// import { array1 } from "./js/Autocomplete";
+// import { array1 } from "./Autocomplete";
+import { getGlobalData, prepare } from "./dataService.js"
+
+export const getChart = () => {
 
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+    const ctx = document.getElementById('myChart').getContext('2d');
 
-    // The data for our dataset
-    data: {
-        labels: ['April', 'July', 'October'],
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-        }]
-    },
 
-    // Configuration options go here
-    options: {}
-});
+    const drawChart = (data) => {
+
+            const preparedData = prepare(data);
+
+            console.log(preparedData)
+
+            const chartConfig = {
+                type: 'line',
+                data: {
+                    labels: preparedData.map(item => item.Date),
+                    datasets: [{
+                            label: 'Deaths',
+                            borderColor: 'rgba(255,140,0, 0.3)',
+                            background: 'rgba(255,143,52,0.6)',
+                            data: preparedData.map(item => {
+                                return {
+                                    x: item.Date,
+                                    y: item.Deces
+                                };
+                            })
+                        },
+                        {
+                            label: 'Cases',
+                            borderColor: 'rgba(230,0,0)',
+                            background: 'rgba(230,0,0,0.3)',
+                            data: preparedData.map(item => {
+                                return {
+                                    x: item.Date,
+                                    y: item.Infection
+                                };
+
+                            })
+                        },
+                        {
+                            label: 'Recovered',
+                            borderColor: 'rgba(112,168,0)',
+                            background: 'rgba(112,168,0,0.3)',
+                            data: preparedData.map(item => {
+                                return {
+                                    x: item.Date,
+                                    y: item.Guerisons
+                                };
+                            })
+
+                        },
+                    ]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            }
+                        }]
+                    }
+                }
+
+            };
+
+            console.log(chartConfig);
+
+            const chart = new Chart(ctx, chartConfig)
+
+        }
+        // getGlobalData().then(data => {
+        //     drawChart(data)
+        // })
+    drawChart(getGlobalData());
+
+    const nextButton = document.querySelector('.diagram-right');
+    const prevButton = document.querySelector('.diagram-left');
+
+
+
+
+}

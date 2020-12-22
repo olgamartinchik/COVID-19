@@ -1,6 +1,3 @@
-// export let array1 = ["USA", "India", "Bosnia and Herzegovina", "Brazil", "Russia", "France", "Turkey", "UK", "Italy", "Spain", "Argentina", "Germany", "Colombia", "Mexico", "Poland", "Iran", "Peru", "Ukraine", "South Africa", "Netherlands", "Indonesia", "Belgium", "Czechia", "Romania", "Chile", "Iraq", "Canada", "Bangladesh", "Philippines", "Pakistan", "Morocco", "Switzerland", "Israel", "Portugal", "Sweden", "Saudi Arabia"];
-// import { array1 } from "./js/apiCountry";
-
 export const Autocomplete = (selector, data) => {
 
     let inputs = document.querySelectorAll(selector);
@@ -57,7 +54,10 @@ export const Autocomplete = (selector, data) => {
 
             let value = input.value;
 
-            if (!value) return setActive(false);
+            if (!value) {
+
+                return setActive(false);
+            }
 
 
             list.innerHTML = '';
@@ -88,7 +88,7 @@ export const Autocomplete = (selector, data) => {
                     selectItem(listItems.indexOf(item));
                     searchListCountry();
 
-                    listItems = [];
+                    // listItems = [];
                 });
 
             });
@@ -120,13 +120,14 @@ export const Autocomplete = (selector, data) => {
                 selectItem(focusedItem);
                 searchListCountry()
                 if (input.value === '') {
-                    document.location.reload();
+                    listItems = []
+                        // document.location.reload();
                 }
             }
         });
-        input.addEventListener('focus', (e) => {
-                input.value = ''
-
+        input.addEventListener('click', (e) => {
+                input.value = '';
+                focusedItem = -1;
             })
             ////////////// 
         function searchListCountry() {
@@ -138,11 +139,8 @@ export const Autocomplete = (selector, data) => {
                         elem.classList.remove('country-active');
                     } else {
                         elem.classList.add('country-active');
-                        for (let i = 0; i < elem.length; i++) {
-                            let index = country[i].indexOf(elem[i]);
-                            let removed = country[i].splice(index, 1);
-                            country[i].unshift(removed[0]);
-                        }
+                        elem.scrollIntoView();
+
                     }
                 })
             } else {
@@ -153,11 +151,12 @@ export const Autocomplete = (selector, data) => {
             }
 
         }
-        // searchListCountry()
+
         ///////////////
 
         document.body.addEventListener('click', function(e) {
             if (!wrap.contains(e.target)) setActive(false);
+            listItems = []
         });
     });
 }

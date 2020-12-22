@@ -4,8 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// require('babel-polyfill');
-// require("babel-polyfill");
+// const json = require('./data/covid-data-2020-12-22.json');
 
 
 module.exports = (env, options) => {
@@ -21,8 +20,6 @@ module.exports = (env, options) => {
 
             filename: 'script.js',
         },
-
-        // entry: ["babel-polyfill", "./src/index.js"],
 
 
         module: {
@@ -50,6 +47,10 @@ module.exports = (env, options) => {
 
                     }]
                 },
+                // {
+                //     test: /\.json$/,
+                //     loader: 'json-loader'
+                // },
 
 
             ]
@@ -68,6 +69,10 @@ module.exports = (env, options) => {
                 patterns: [{
                         from: './src/assets/img',
                         to: './src/assets/img'
+                    },
+                    {
+                        from: './src/js/data',
+                        to: './data'
                     },
 
                 ]

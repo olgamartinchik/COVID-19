@@ -108,7 +108,14 @@ h5 {
 .fa-search {
   position: absolute;
   color: #000;
-  right: 20px;
+  right: 63px;
+}
+
+.btn_keyboard {
+  visibility: hidden;
+  font-size: 30px;
+  margin: 0 10px;
+  cursor: pointer;
 }
 
 .main-container {
@@ -230,11 +237,19 @@ h5 {
   margin-bottom: 10px;
 }
 
+.headline_cases,
+.headline_deathes,
+.headline_recovered {
+  text-align: center;
+  margin: 3px 0;
+  font-style: italic;
+}
+
 .fa-caret-square-right {
   font-size: 25px;
   position: absolute;
   bottom: 4px;
-  right: 15px;
+  right: 5px;
 }
 .fa-caret-square-right:hover {
   cursor: pointer;
@@ -245,7 +260,7 @@ h5 {
   font-size: 25px;
   position: absolute;
   bottom: 4px;
-  left: 15px;
+  left: 5px;
 }
 .fa-caret-square-left:hover {
   cursor: pointer;
@@ -268,7 +283,7 @@ h5 {
 
 .case-country {
   overflow-y: scroll;
-  height: 259px;
+  height: 243px;
   width: 100%;
   overflow-x: hidden;
 }
@@ -278,7 +293,7 @@ h5 {
 }
 
 .case-country-sick .case-country {
-  height: 453px;
+  height: 415px;
 }
 
 .case-country-sick .color-prop {
@@ -329,8 +344,25 @@ h5 {
   max-height: 500px;
 }
 
+.main-subtable-open .case-diagram {
+  max-width: 1000px;
+  width: 100%;
+}
+
 .map-icon {
   width: 20px;
+}
+
+.case-diagram {
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#myChart {
+  cursor: pointer;
 }
 
 .footer {
@@ -387,6 +419,18 @@ h5 {
   }
 }
 @media all and (max-width: 767px) {
+  .keyboard {
+    display: none;
+  }
+
+  .btn_keyboard {
+    display: none;
+  }
+
+  .fa-search {
+    right: 15px;
+  }
+
   .main-container {
     width: 100%;
     display: flex;
@@ -445,6 +489,7 @@ h5 {
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   user-select: none;
   transition: bottom 0.4s;
+  z-index: 3;
 }
 
 .keyboard--hidden {

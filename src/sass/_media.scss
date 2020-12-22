@@ -1,57 +1,66 @@
-@media all and (max-width: 982px) {
-    .global-case {
-        font-size: 18px;
+    @media all and (max-width: 982px) {
+        .global-case {
+            font-size: 18px;
+        }
     }
-}
-
-@media all and (max-width: 800px) {
-    .global-case {
-        font-size: 16px;
+    
+    @media all and (max-width: 800px) {
+        .global-case {
+            font-size: 16px;
+        }
     }
-}
-
-@media all and (max-width: 767px) {
-    .main-container {
-        // height: 100vh;
-        width: 100%;
-        display: flex;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
+    
+    @media all and (max-width: 767px) {
+        .keyboard {
+            display: none;
+        }
+        .btn_keyboard {
+            display: none;
+        }
+        .fa-search {
+            right: 15px;
+        }
+        .main-container {
+            // height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .main-table_left {
+            flex-grow: 1;
+        }
+        .main-table_middle {
+            flex-grow: 1;
+        }
+        .main-table_right {
+            flex-grow: 1;
+        }
+        .global-case {
+            font-size: 25px;
+        }
+        .main-subtable-open {
+            position: fixed;
+            // position: absolute;
+            width: 100%;
+            // height: 100%;
+            height: 100vh;
+        }
+        .circle-btn {
+            font-size: 30px;
+        }
     }
-    .main-table_left {
-        flex-grow: 1;
+    
+    @media all and (max-width: 600px) {
+        .header-title {
+            font-size: 18px;
+        }
+        .form-label {
+            font-size: 16px;
+        }
+        #input-select {
+            width: 150px;
+        }
     }
-    .main-table_middle {
-        flex-grow: 1;
-    }
-    .main-table_right {
-        flex-grow: 1;
-    }
-    .global-case {
-        font-size: 25px;
-    }
-    .main-subtable-open {
-        position: fixed;
-        // position: absolute;
-        width: 100%;
-        // height: 100%;
-        height: 100vh;
-    }
-    .circle-btn {
-        font-size: 30px;
-    }
-}
-
-@media all and (max-width: 600px) {
-    .header-title {
-        font-size: 18px;
-    }
-    .form-label {
-        font-size: 16px;
-    }
-    #input-select {
-        width: 150px;
-    }
-}

@@ -120,12 +120,22 @@
     margin-bottom: 10px;
 }
 
+.headline_cases,
+.headline_deathes,
+.headline_recovered {
+    // position: absolute;
+    // bottom: 13px;
+    text-align: center;
+    margin: 3px 0;
+    font-style: italic;
+}
+
 //button slider
 .fa-caret-square-right {
     font-size: 25px;
     position: absolute;
     bottom: 4px;
-    right: 15px;
+    right: 5px;
     &:hover {
         cursor: pointer;
         color: rgb(189, 183, 183);
@@ -136,7 +146,7 @@
     font-size: 25px;
     position: absolute;
     bottom: 4px;
-    left: 15px;
+    left: 5px;
     &:hover {
         cursor: pointer;
         color: rgb(189, 183, 183);
@@ -160,7 +170,7 @@
 //scroll
 .case-country {
     overflow-y: scroll;
-    height: 259px;
+    height: 243px;
     width: 100%;
     overflow-x: hidden;
 }
@@ -170,7 +180,7 @@
 }
 
 .case-country-sick .case-country {
-    height: 453px;
+    height: 415px;
 }
 
 .case-country-sick .color-prop {
@@ -224,6 +234,24 @@
     }
 }
 
+.main-subtable-open .case-diagram {
+    max-width: 1000px;
+    width: 100%;
+}
+
 .map-icon {
     width: 20px;
+}
+
+.case-diagram {
+    max-width: 400px;
+    width: 100%;
+    // height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#myChart {
+    cursor: pointer;
 }

@@ -1,11 +1,11 @@
-// export 
-const Keyboard = {
+export const Keyboard = {
 
     elements: {
         main: null,
         keysContainer: null,
         keys: [],
-        input: document.querySelectorAll("#input-select")[0]
+        input: document.querySelectorAll("#input-select")[0],
+        btnKeyboard: document.querySelector('.btn_keyboard'),
     },
 
     eventHandlers: {
@@ -39,13 +39,36 @@ const Keyboard = {
         this.elements.main.appendChild(this.elements.keysContainer);
         document.body.appendChild(this.elements.main);
 
-        this.elements.input.addEventListener('focus', () => {
-            this.open(this.elements.input.value, currentValue => {
+        this.elements.input.addEventListener('focus', (e) => {
+            this.elements.btnKeyboard.style.visibility = 'visible';
 
-                this.elements.input.value = currentValue;
+            // if (this.elements.btnKeyboard.style.visibility !== 'visible') {
+            //     this.elements.btnKeyboard.style.visibility = 'visible';
+            //     console.log(this.elements.btnKeyboard)
+            //     this.elements.btnKeyboard.addEventListener('click', () => {
+            //         this.open(this.elements.input.value, currentValue => {
 
-            });
+            //             this.elements.input.value = currentValue;
+
+            //         });
+            //     })
+            // }
+
+
         });
+
+        this.elements.btnKeyboard.addEventListener('click', () => {
+            this.open(this.elements.input.value, currentValue => {
+                this.elements.input.value = currentValue;
+                const inputEvent = new Event('input', {
+                    bubbles: true,
+                    cancelable: true
+                });
+                this.elements.input.dispatchEvent(inputEvent);
+            });
+        })
+
+
 
         function aaa(b) {
             b.classList.remove("keyboard__press");
@@ -244,6 +267,7 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.close();
                         this._triggerEvent("onclose");
+                        this.elements.btnKeyboard.style.visibility = 'hidden';
                     });
 
                     break;

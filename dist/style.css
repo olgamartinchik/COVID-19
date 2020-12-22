@@ -92,7 +92,13 @@ h5 {
 .fa-search {
   position: absolute;
   color: #000;
-  right: 20px; }
+  right: 63px; }
+
+.btn_keyboard {
+  visibility: hidden;
+  font-size: 30px;
+  margin: 0 10px;
+  cursor: pointer; }
 
 .main-container {
   width: 100%;
@@ -191,11 +197,18 @@ h5 {
 .table-title-country {
   margin-bottom: 10px; }
 
+.headline_cases,
+.headline_deathes,
+.headline_recovered {
+  text-align: center;
+  margin: 3px 0;
+  font-style: italic; }
+
 .fa-caret-square-right {
   font-size: 25px;
   position: absolute;
   bottom: 4px;
-  right: 15px; }
+  right: 5px; }
   .fa-caret-square-right:hover {
     cursor: pointer;
     color: #bdb7b7; }
@@ -204,7 +217,7 @@ h5 {
   font-size: 25px;
   position: absolute;
   bottom: 4px;
-  left: 15px; }
+  left: 5px; }
   .fa-caret-square-left:hover {
     cursor: pointer;
     color: #bdb7b7; }
@@ -222,7 +235,7 @@ h5 {
 
 .case-country {
   overflow-y: scroll;
-  height: 259px;
+  height: 243px;
   width: 100%;
   overflow-x: hidden; }
 
@@ -230,7 +243,7 @@ h5 {
   width: 100%; }
 
 .case-country-sick .case-country {
-  height: 453px; }
+  height: 415px; }
 
 .case-country-sick .color-prop {
   color: #e60000; }
@@ -270,8 +283,22 @@ h5 {
   .main-subtable-open .case-country {
     max-height: 500px; }
 
+.main-subtable-open .case-diagram {
+  max-width: 1000px;
+  width: 100%; }
+
 .map-icon {
   width: 20px; }
+
+.case-diagram {
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+#myChart {
+  cursor: pointer; }
 
 .footer {
   display: flex;
@@ -317,6 +344,12 @@ h5 {
     font-size: 16px; } }
 
 @media all and (max-width: 767px) {
+  .keyboard {
+    display: none; }
+  .btn_keyboard {
+    display: none; }
+  .fa-search {
+    right: 15px; }
   .main-container {
     width: 100%;
     display: flex;
@@ -356,7 +389,8 @@ h5 {
   background: #434747;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   user-select: none;
-  transition: bottom 0.4s; }
+  transition: bottom 0.4s;
+  z-index: 3; }
 
 .keyboard--hidden {
   bottom: -100%; }
