@@ -55,8 +55,8 @@ async function getAllCount(array) {
         })
     }
 
-    let color = "green"
-    createMarkers(sortPropertyRecovered, array, color)
+    let color = "red"
+    createMarkers(sortPropertyCases, array, color)
 
 }
 
@@ -82,6 +82,7 @@ function createMarkers(prop, array, color) {
             }
             // Creating a circle
         let circle = L.circle(circleCenter, size, circleOptions);
+        circle.bindPopup(`${array[i].name}  (${prop}: ${array[i][prop]})`)
         circle.addTo(map1);
     }
 }
