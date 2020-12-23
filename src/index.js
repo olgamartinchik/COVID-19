@@ -6,7 +6,7 @@ import { array1 } from "./js/apiCountry";
 import { getDataCountries } from "./js/apiCountry";
 // import { chart } from "./js/chart"
 
-
+import './js/map'
 window.addEventListener('DOMContentLoaded', () => {
     // развернуть секцию на весь экран
     openSection();
