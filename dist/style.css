@@ -280,7 +280,7 @@ h5 {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1001; }
+  z-index: 1003; }
   .main-subtable-open .global-case {
     font-size: 60px; }
   .main-subtable-open h4 {
@@ -306,6 +306,47 @@ h5 {
 
 #myChart {
   cursor: pointer; }
+
+.fa-list-ul {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #413e3e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1002;
+  font-size: 20px;
+  cursor: pointer; }
+
+.legend_map_active .legend_about {
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+  background-color: #413e3e;
+  z-index: 1002; }
+
+.legend_title {
+  width: 250px;
+  height: 30px;
+  background-color: #646363;
+  padding-top: 6px;
+  font-size: 18px; }
+
+.legend_subtitle {
+  font-size: 16px;
+  margin-top: 5px;
+  text-align: center; }
+
+.legend_list {
+  overflow-y: scroll;
+  height: 150px; }
 
 .footer {
   display: flex;
