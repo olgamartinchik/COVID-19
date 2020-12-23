@@ -132,22 +132,23 @@ export const Autocomplete = (selector, data) => {
             ////////////// 
         function searchListCountry() {
 
+
             let country = document.querySelectorAll('.case-country li')
-            if (input.value !== '') {
-                country.forEach(elem => {
-                    if (elem.innerText.search(input.value) === -1) {
+            if (country) {
+                if (input.value !== '') {
+                    country.forEach(elem => {
+                        if (elem.innerText.search(input.value) === -1) {
+                            elem.classList.remove('country-active');
+                        } else {
+                            elem.classList.add('country-active');
+                            elem.scrollIntoView();
+                        }
+                    })
+                } else {
+                    country.forEach(elem => {
                         elem.classList.remove('country-active');
-                    } else {
-                        elem.classList.add('country-active');
-                        elem.scrollIntoView();
-
-                    }
-                })
-            } else {
-                country.forEach(elem => {
-                    elem.classList.remove('country-active');
-                })
-
+                    })
+                }
             }
 
         }
@@ -159,28 +160,30 @@ export const Autocomplete = (selector, data) => {
             listItems = []
         });
     });
+
 }
 
 export const searchCountryWithClick = () => {
-    let country = document.querySelectorAll('.case-country li');
-    console.log(country)
+    setTimeout(() => {
+        let country = document.querySelectorAll('.case-country-sick li');
+        console.log(country)
 
-    for (let i = 0; i < country.length; i++) {
-        country[i].addEventListener('click', () => {
-            // if (country[i].innerText === country[i].innerText) {
-            country[i].classList.add('country-active');
-            country[i].scrollIntoView();
-            // } else {
-            //     country[i].classList.remove('country-active');
-            // }
-        })
-    }
+        for (let i = 0; i < country.length; i++) {
+            // country[i].classList.remove('country-active');
+            country[i].addEventListener('click', () => {
+                // country[i].classList.remove('country-active');
+                if (country[i].classList.contains('country-active')) {
+                    country[i].classList.remove('country-active');
+                } else {
+                    country[i].classList.add('country-active');
+                    country[i].scrollIntoView();
+                }
+            })
+
+        }
 
 
 
-
-
-
-
+    }, 15000)
 
 }

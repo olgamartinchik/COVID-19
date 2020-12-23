@@ -215,7 +215,7 @@ h5 {
 }
 
 .global-case-deaths {
-  opacity: 0.7;
+  color: #ff8f34;
 }
 
 .global-case-recovered {
@@ -223,10 +223,17 @@ h5 {
 }
 
 .map-case {
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
+}
+
+#map {
+  max-width: 1000px;
+  height: 1000px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .table-title {
@@ -293,7 +300,8 @@ h5 {
 }
 
 .case-country-sick .case-country {
-  height: 415px;
+  max-height: 415px;
+  height: 100%;
 }
 
 .case-country-sick .color-prop {
@@ -301,7 +309,7 @@ h5 {
 }
 
 .case-country-deathes .color-prop {
-  opacity: 0.7;
+  color: #ff8f34;
 }
 
 .case-country-recovered .color-prop {
@@ -329,7 +337,7 @@ h5 {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 1001;
 }
 .main-subtable-open .global-case {
   font-size: 60px;

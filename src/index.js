@@ -6,7 +6,7 @@ import { array1 } from "./js/apiCountry";
 import { getDateCountries } from "./js/apiCountry";
 import { getChart } from "./js/chart";
 // import { getGlobalData, prepare } from "./js/dataService"
-
+import './js/map'
 
 
 window.addEventListener('DOMContentLoaded', () => {

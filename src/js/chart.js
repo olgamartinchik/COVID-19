@@ -1,4 +1,3 @@
-// import { array1 } from "./Autocomplete";
 import { getGlobalData, prepare } from "./dataService.js"
 
 export const getChart = () => {
@@ -19,7 +18,7 @@ export const getChart = () => {
                     labels: preparedData.map(item => item.Date),
                     datasets: [{
                             label: 'Deaths',
-                            borderColor: 'rgba(255,140,0, 0.3)',
+                            borderColor: 'rgba(255,143,52)',
                             background: 'rgba(255,143,52,0.6)',
 
                             data: preparedData.map(item => {

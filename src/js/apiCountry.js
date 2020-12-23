@@ -1,3 +1,5 @@
+import { searchCountryWithClick } from "./Autocomplete";
+
 export const array1 = [] // массив самих стран
 const arrayList = [] // массив обьектов с информациях о странах
 let globalValues
@@ -61,6 +63,7 @@ export const getDateCountries = () => {
     getAllCountries(array1)
         // получаем глобальные переменные
     getGlobalValues();
+
 
 }
 
@@ -158,6 +161,8 @@ async function getAllCountries(array) {
     }
 
     getListCountries(array)
+
+
 }
 
 // получение из API и вывод глобльных данных 

@@ -15,6 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/Autocomplete */ "./src/js/Autocomplete.js");
 /* harmony import */ var _js_apiCountry__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/apiCountry */ "./src/js/apiCountry.js");
 /* harmony import */ var _js_chart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/chart */ "./src/js/chart.js");
+/* harmony import */ var _js_map__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/map */ "./src/js/map.js");
 
 
 
@@ -22,6 +23,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // import { getGlobalData, prepare } from "./js/dataService"
+
 
 window.addEventListener('DOMContentLoaded', () => {
   (0,_js_apiCountry__WEBPACK_IMPORTED_MODULE_4__.getDateCountries)(); //график
@@ -163,19 +165,21 @@ const Autocomplete = (selector, data) => {
     function searchListCountry() {
       let country = document.querySelectorAll('.case-country li');
 
-      if (input.value !== '') {
-        country.forEach(elem => {
-          if (elem.innerText.search(input.value) === -1) {
+      if (country) {
+        if (input.value !== '') {
+          country.forEach(elem => {
+            if (elem.innerText.search(input.value) === -1) {
+              elem.classList.remove('country-active');
+            } else {
+              elem.classList.add('country-active');
+              elem.scrollIntoView();
+            }
+          });
+        } else {
+          country.forEach(elem => {
             elem.classList.remove('country-active');
-          } else {
-            elem.classList.add('country-active');
-            elem.scrollIntoView();
-          }
-        });
-      } else {
-        country.forEach(elem => {
-          elem.classList.remove('country-active');
-        });
+          });
+        }
       }
     } ///////////////
 
@@ -187,18 +191,23 @@ const Autocomplete = (selector, data) => {
   });
 };
 const searchCountryWithClick = () => {
-  let country = document.querySelectorAll('.case-country li');
-  console.log(country);
+  setTimeout(() => {
+    let country = document.querySelectorAll('.case-country-sick li');
+    console.log(country);
 
-  for (let i = 0; i < country.length; i++) {
-    country[i].addEventListener('click', () => {
-      // if (country[i].innerText === country[i].innerText) {
-      country[i].classList.add('country-active');
-      country[i].scrollIntoView(); // } else {
-      //     country[i].classList.remove('country-active');
-      // }
-    });
-  }
+    for (let i = 0; i < country.length; i++) {
+      // country[i].classList.remove('country-active');
+      country[i].addEventListener('click', () => {
+        // country[i].classList.remove('country-active');
+        if (country[i].classList.contains('country-active')) {
+          country[i].classList.remove('country-active');
+        } else {
+          country[i].classList.add('country-active');
+          country[i].scrollIntoView();
+        }
+      });
+    }
+  }, 15000);
 };
 
 /***/ }),
@@ -616,6 +625,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "array1": () => /* binding */ array1,
 /* harmony export */   "getDateCountries": () => /* binding */ getDateCountries
 /* harmony export */ });
+/* harmony import */ var _Autocomplete__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Autocomplete */ "./src/js/Autocomplete.js");
+
 const array1 = []; // массив самих стран
 
 const arrayList = []; // массив обьектов с информациях о странах
@@ -810,7 +821,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getChart": () => /* binding */ getChart
 /* harmony export */ });
 /* harmony import */ var _dataService_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataService.js */ "./src/js/dataService.js");
-// import { array1 } from "./Autocomplete";
 
 const getChart = () => {
   const ctx = document.getElementById('myChart').getContext('2d');
@@ -824,7 +834,7 @@ const getChart = () => {
         labels: preparedData.map(item => item.Date),
         datasets: [{
           label: 'Deaths',
-          borderColor: 'rgba(255,140,0, 0.3)',
+          borderColor: 'rgba(255,143,52)',
           background: 'rgba(255,143,52,0.6)',
           data: preparedData.map(item => {
             return {
@@ -931,6 +941,83 @@ const getDate = () => {
   console.log(date);
   day.innerHTML = `${month}/${date}/${year}`;
 };
+
+/***/ }),
+
+/***/ "./src/js/map.js":
+/*!***********************!*\
+  !*** ./src/js/map.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _apiCountry__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./apiCountry */ "./src/js/apiCountry.js");
+console.log('map');
+
+let mapOptions = {
+  center: [0, 0],
+  zoom: 2
+}; // Creating a map object
+
+let map1 = new L.map('map', mapOptions);
+console.log('xxxxxxxx:' + map1); // Creating a Layer object
+
+let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'); // Adding layer to the map
+
+map1.addLayer(layer);
+const arrayCountries = [];
+getAllCount(arrayCountries);
+console.log('map: ' + arrayCountries);
+
+async function getAllCount(array) {
+  const resu = await fetch(`https://corona.lmao.ninja/v2/countries/`);
+  const data = await resu.json();
+  data.sort((prev, next) => next.cases - prev.cases);
+  console.log(data);
+
+  for (let i = 0; i <= 100; i++) {
+    array.push({
+      name: data[i].country,
+      lat: data[i].countryInfo.lat,
+      long: data[i].countryInfo.long,
+      cases: data[i].cases
+    });
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    //let circleCenter = [array[i].lat, array[i].long];
+    let size = 5000;
+
+    if (data[i].cases >= 100000) {
+      size = 25000;
+    } else if (data[i].cases >= 250000) {
+      size = 55000;
+    } else if (data[i].cases >= 400000) {
+      size = 75000;
+    } else if (data[i].cases >= 500000) {
+      size = 85000;
+    } else if (data[i].cases >= 1000000) {
+      size = 90000;
+    }
+    /*let circleOptions = {
+            color: 'red',
+            fillColor: 'red',
+            fillOpacity: 0.7
+        }
+        // Creating a circle
+    let circle = L.circle(circleCenter, size, circleOptions);
+    circle.bindPopup(`${data[i].name}`).openPopup();
+    circle.addTo(map1);*/
+
+
+    var marker = L.marker([array[i].lat, array[i].long]); // Adding marker to the map
+
+    marker.bindPopup(`${array[i].name} \n ${array[i].cases}`).openPopup();
+    marker.addTo(map1); // Adding marker to the map
+
+    console.log('nnnnnnn: ' + typeof marker);
+  }
+}
 
 /***/ }),
 
