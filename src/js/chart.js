@@ -21,6 +21,7 @@ export const getChart = () => {
                             label: 'Deaths',
                             borderColor: 'rgba(255,140,0, 0.3)',
                             background: 'rgba(255,143,52,0.6)',
+
                             data: preparedData.map(item => {
                                 return {
                                     x: item.Date,
@@ -32,6 +33,7 @@ export const getChart = () => {
                             label: 'Cases',
                             borderColor: 'rgba(230,0,0)',
                             background: 'rgba(230,0,0,0.3)',
+
                             data: preparedData.map(item => {
                                 return {
                                     x: item.Date,
@@ -44,6 +46,7 @@ export const getChart = () => {
                             label: 'Recovered',
                             borderColor: 'rgba(112,168,0)',
                             background: 'rgba(112,168,0,0.3)',
+
                             data: preparedData.map(item => {
                                 return {
                                     x: item.Date,

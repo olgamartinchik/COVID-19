@@ -145,9 +145,9 @@ export const Autocomplete = (selector, data) => {
                 })
             } else {
                 country.forEach(elem => {
-                        elem.classList.remove('country-active');
-                    })
-                    // document.location.reload();
+                    elem.classList.remove('country-active');
+                })
+
             }
 
         }
@@ -159,4 +159,28 @@ export const Autocomplete = (selector, data) => {
             listItems = []
         });
     });
+}
+
+export const searchCountryWithClick = () => {
+    let country = document.querySelectorAll('.case-country li');
+    console.log(country)
+
+    for (let i = 0; i < country.length; i++) {
+        country[i].addEventListener('click', () => {
+            // if (country[i].innerText === country[i].innerText) {
+            country[i].classList.add('country-active');
+            country[i].scrollIntoView();
+            // } else {
+            //     country[i].classList.remove('country-active');
+            // }
+        })
+    }
+
+
+
+
+
+
+
+
 }

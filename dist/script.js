@@ -34,6 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   _js_Keyboard__WEBPACK_IMPORTED_MODULE_2__.Keyboard.init();
   (0,_js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__.Autocomplete)('#input-select', _js_apiCountry__WEBPACK_IMPORTED_MODULE_4__.array1);
+  (0,_js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__.searchCountryWithClick)();
 });
 
 /***/ }),
@@ -46,7 +47,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Autocomplete": () => /* binding */ Autocomplete
+/* harmony export */   "Autocomplete": () => /* binding */ Autocomplete,
+/* harmony export */   "searchCountryWithClick": () => /* binding */ searchCountryWithClick
 /* harmony export */ });
 const Autocomplete = (selector, data) => {
   let inputs = document.querySelectorAll(selector);
@@ -173,7 +175,7 @@ const Autocomplete = (selector, data) => {
       } else {
         country.forEach(elem => {
           elem.classList.remove('country-active');
-        }); // document.location.reload();
+        });
       }
     } ///////////////
 
@@ -183,6 +185,20 @@ const Autocomplete = (selector, data) => {
       listItems = [];
     });
   });
+};
+const searchCountryWithClick = () => {
+  let country = document.querySelectorAll('.case-country li');
+  console.log(country);
+
+  for (let i = 0; i < country.length; i++) {
+    country[i].addEventListener('click', () => {
+      // if (country[i].innerText === country[i].innerText) {
+      country[i].classList.add('country-active');
+      country[i].scrollIntoView(); // } else {
+      //     country[i].classList.remove('country-active');
+      // }
+    });
+  }
 };
 
 /***/ }),
