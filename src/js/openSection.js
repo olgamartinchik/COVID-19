@@ -23,3 +23,10 @@ const showButton = () => {
         })
     }
 }
+
+export const showLegend = () => {
+    let legend = document.querySelector('.legend_map');
+    legend.addEventListener('click', () => {
+        legend.classList.toggle('legend_map_active')
+    })
+}

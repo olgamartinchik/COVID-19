@@ -37,6 +37,7 @@ window.addEventListener('DOMContentLoaded', () => {
   _js_Keyboard__WEBPACK_IMPORTED_MODULE_2__.Keyboard.init();
   (0,_js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__.Autocomplete)('#input-select', _js_apiCountry__WEBPACK_IMPORTED_MODULE_4__.array1);
   (0,_js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__.searchCountryWithClick)();
+  (0,_js_openSection__WEBPACK_IMPORTED_MODULE_0__.showLegend)();
 });
 
 /***/ }),
@@ -1029,7 +1030,8 @@ async function getAllCount(array) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "openSection": () => /* binding */ openSection
+/* harmony export */   "openSection": () => /* binding */ openSection,
+/* harmony export */   "showLegend": () => /* binding */ showLegend
 /* harmony export */ });
 const openSection = () => {
   showButton();
@@ -1057,6 +1059,13 @@ const showButton = () => {
       btns[i].style.display = 'none';
     });
   }
+};
+
+const showLegend = () => {
+  let legend = document.querySelector('.legend_map');
+  legend.addEventListener('click', () => {
+    legend.classList.toggle('legend_map_active');
+  });
 };
 
 /***/ }),

@@ -21,6 +21,7 @@
 .main-table_middle {
     flex-grow: 2.8;
     width: 100%;
+    // min-width: 300px;
 }
 
 .main-table_right {
@@ -282,19 +283,29 @@
 }
 
 .legend_map_active .legend_about {
+    display: block;
     position: absolute;
     right: 20px;
     top: 60px;
-    width: 250px;
+    max-width: 250px;
+    width: 100%;
     height: 250px;
     border-radius: 5px;
     background-color: #413e3e;
     z-index: 1002;
+    transition: all .5s;
+}
+
+.legend_about {
+    display: none;
+    transition: all .5s;
 }
 
 .legend_title {
-    width: 250px;
+    max-width: 250px;
+    width: 100%;
     height: 30px;
+    border-radius: 5px;
     background-color: #646363;
     padding-top: 6px;
     font-size: 18px;
@@ -303,10 +314,18 @@
 .legend_subtitle {
     font-size: 16px;
     margin-top: 5px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
 .legend_list {
     overflow-y: scroll;
     height: 150px;
+    margin: 0 auto;
+    li {
+        padding: 10px 10px;
+        span {
+            padding: 0 10px;
+        }
+    }
 }

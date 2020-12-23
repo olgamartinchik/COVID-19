@@ -1,4 +1,4 @@
-import { openSection } from "./js/openSection";
+import { openSection, showLegend } from "./js/openSection";
 import { getDate } from "./js/getDate";
 import { Keyboard } from "./js/Keyboard";
 import { Autocomplete, searchCountryWithClick } from "./js/Autocomplete";
@@ -28,7 +28,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     Autocomplete('#input-select', array1);
 
-    searchCountryWithClick()
+    searchCountryWithClick();
 
+    showLegend();
 
 });
