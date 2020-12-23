@@ -8,7 +8,7 @@ import { getChart } from "./js/chart";
 // import { getGlobalData, prepare } from "./js/dataService"
 import './js/map'
 
-
+import './js/map'
 window.addEventListener('DOMContentLoaded', () => {
 
     getDateCountries()
