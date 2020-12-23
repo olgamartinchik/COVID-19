@@ -82,12 +82,12 @@
                  "Today Cases": data.todayCases,
                  "Today Deathes": data.todayDeaths,
                  "Today Recovered": data.todayRecovered,
-                 "Total Cases/100th": Math.floor((data.cases / data.population) * 10 ** 5),
-                 "Deathes/100th": Math.floor((data.deaths / data.population) * 10 ** 5),
-                 "Recovered/100th": Math.floor((data.recovered / data.population) * 10 ** 5),
-                 "Today Cases/100th": Math.floor((data.todayCases / data.population) * 10 ** 5),
-                 "Today Deathes/100th": Math.floor((data.todayDeaths / data.population) * 10 ** 5),
-                 "Today Recovered/100th": Math.floor((data.todayRecovered / data.population) * 10 ** 5)
+                 "Total Cases/100th": Math.ceil((data.cases / data.population) * 10 ** 5),
+                 "Deathes/100th": Math.ceil((data.deaths / data.population) * 10 ** 5),
+                 "Recovered/100th": Math.ceil((data.recovered / data.population) * 10 ** 5),
+                 "Today Cases/100th": Math.ceil((data.todayCases / data.population) * 10 ** 5),
+                 "Today Deathes/100th": Math.ceil((data.todayDeaths / data.population) * 10 ** 5),
+                 "Today Recovered/100th": Math.ceil((data.todayRecovered / data.population) * 10 ** 5)
 
              })
          }
@@ -165,7 +165,7 @@
      const resu = await fetch(`https://corona.lmao.ninja/v2/all?yesterday`);
      const data = await resu.json();
 
-
+     console.log(data.population);
      globalValues = {
          "Total Cases": data.cases,
          Deathes: data.deaths,
@@ -173,12 +173,12 @@
          "Today Cases": data.todayCases,
          "Today Deathes": data.todayDeaths,
          "Today Recovered": data.todayRecovered,
-         "Total Cases/100th": Math.floor((data.cases / data.population) * 10 ** 5),
-         "Deathes/100th": Math.floor((data.deaths / data.population) * 10 ** 5),
-         "Recovered/100th": Math.floor((data.recovered / data.population) * 10 ** 5),
-         "Today Cases/100th": Math.floor((data.todayCases / data.population) * 10 ** 5),
-         "Today Deathes/100th": Math.floor((data.todayDeaths / data.population) * 10 ** 5),
-         "Today Recovered/100th": Math.floor((data.todayRecovered / data.population) * 10 ** 5)
+         "Total Cases/100th": Math.ceil((data.cases / data.population) * 10 ** 5),
+         "Deathes/100th": Math.ceil((data.deaths / data.population) * 10 ** 5),
+         "Recovered/100th": Math.ceil((data.recovered / data.population) * 10 ** 5),
+         "Today Cases/100th": Math.ceil((data.todayCases / data.population) * 10 ** 5),
+         "Today Deathes/100th": Math.ceil((data.todayDeaths / data.population) * 10 ** 5),
+         "Today Recovered/100th": Math.ceil((data.todayRecovered / data.population) * 10 ** 5)
 
      }
      const valueCases = globalValues[sortPropertyCases].toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ')

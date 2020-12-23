@@ -40,7 +40,7 @@ async function getAllCount(array) {
     }
 
     for (let i = 0; i < array.length; i++) {
-        //let circleCenter = [array[i].lat, array[i].long];
+        let circleCenter = [array[i].lat, array[i].long];
         let size = 5000
         if (data[i].cases >= 100000) {
             size = 25000
@@ -53,21 +53,21 @@ async function getAllCount(array) {
         } else if (data[i].cases >= 1000000) {
             size = 90000
         }
-        /*let circleOptions = {
+        let circleOptions = {
                 color: 'red',
                 fillColor: 'red',
                 fillOpacity: 0.7
             }
             // Creating a circle
         let circle = L.circle(circleCenter, size, circleOptions);
-        circle.bindPopup(`${data[i].name}`).openPopup();
-        circle.addTo(map1);*/
-        var marker = L.marker([array[i].lat, array[i].long]);
+        circle.addTo(map1);
+        /*var marker = L.marker([array[i].lat, array[i].long]);
 
         // Adding marker to the map
         marker.bindPopup(`${array[i].name} \n ${array[i].cases}`).openPopup();
-        marker.addTo(map1);
+        marker.addTo(map1);*/
         // Adding marker to the map
 
 
     }
+}
