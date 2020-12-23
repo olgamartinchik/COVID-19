@@ -3,7 +3,7 @@ import { getDate } from "./js/getDate";
 import { Keyboard } from "./js/Keyboard";
 import { Autocomplete, searchCountryWithClick } from "./js/Autocomplete";
 import { array1 } from "./js/apiCountry";
-import { getDateCountries } from "./js/apiCountry";
+import { getDataCountries } from "./js/apiCountry";
 import { getChart } from "./js/chart";
 // import { getGlobalData, prepare } from "./js/dataService"
 import './js/map'
@@ -11,7 +11,7 @@ import './js/map'
 import './js/map'
 window.addEventListener('DOMContentLoaded', () => {
 
-    getDateCountries()
+    getDataCountries()
 
     //график
     getChart();
