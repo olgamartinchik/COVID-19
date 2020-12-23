@@ -70,4 +70,5 @@ async function getAllCount(array) {
         // Adding marker to the map
 
 
-    }
+   }
+}
