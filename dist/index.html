@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <link rel="shortcut icon" href="assets/favicon.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./src/sass/style.css"> -->
@@ -19,7 +21,7 @@
         <div class="container">
             <div class="header-container">
                 <h1 class="header-title">
-                    COVID-19 Dashboard
+                    COVID-19 Dashdord
                 </h1>
                 <div class="select-form">
                     <label class="form-label" for="input-select">Select Country</label>
@@ -46,7 +48,7 @@
                         <div class="slider-container">
 
                             <h4 class="table-title table-title-sick">Global Cases <br>
-                            </h4>
+                                <span class="headline_cases"></span> </h4>
                             <div class="global-case global-case-sick cases">11 111 111</div>
                         </div>
                         <i class="fas fa-caret-square-left global-case-left left-button-cases"></i> <i class="fas fa-caret-square-right global-case-right right-button-cases"></i>
@@ -56,7 +58,7 @@
                         <div class="circle-btn">
                             <i class="far fa-times-circle"></i>
                         </div>
-                        <h4 class="table-title table-title-country headline_cases">Cases by Country</h4>
+                        <h4 class="table-title table-title-country">Cases by Country</h4>
                         <div class="list_of_countries_cases list_of_countries case-country-sick">
                             <!-- <ul class="case-country   case-country-sick">
 
@@ -71,14 +73,12 @@
                         <div class="circle-btn">
                             <i class="far fa-times-circle"></i>
                         </div>
-                        <div class="map-case">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d150505.9295830918!2d27.453285966964415!3d53.884558462698536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfd35b1e6ad3%3A0xb61b853ddb570d9!2z0JzQuNC90YHQug!5e0!3m2!1sru!2sby!4v1608010869888!5m2!1sru!2sby"
-                                width="600" height="450" frameborder="0" style="border:0; max-width:100%" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <div id="map" style="width: 600px; height: 450px">
                         </div>
                     </div>
                     <div class="main-subtable-middle subtable-update">
 
-                        <div class="main-subtable ">
+                        <div class="main-subtable">
                             <div class="circle-btn">
                                 <i class="far fa-times-circle"></i>
                             </div>
@@ -102,7 +102,7 @@
                                 <i class="far fa-times-circle"></i>
                             </div>
                             <h4 class="table-title table-title-deaths">Global Deaths <br>
-
+                                <span class="headline_deathes"></span>
                             </h4>
                             <div class="global-case global-case-deaths deathes">11 111 111</div>
                             <div class="list_of_countries_deathes list_of_countries case-country-deathes">
@@ -113,8 +113,6 @@
                             </div>
 
                             <i class="fas fa-caret-square-left deaths-left left-button-deathes"></i>
-                            <br>
-                            <span class="headline_deathes"></span>
                             <i class="fas fa-caret-square-right deaths-right right-button-deathes"></i>
                         </div>
                         <div class="main-subtable subtable-case-recovered">
@@ -123,7 +121,7 @@
                                 <i class="far fa-times-circle"></i>
                             </div>
                             <h4 class="table-title table-title">Global Recovered <br>
-
+                                <span class="headline_recovered"></span>
                             </h4>
                             <div class="global-case global-case-recovered recovered">11 111 111</div>
                             <div class="list_of_countries_recovered list_of_countries case-country-recovered">
@@ -134,8 +132,6 @@
                                         </ul> -->
                             </div>
                             <i class="fas fa-caret-square-left recovered-left left-button-recovered"></i>
-                            <br>
-                            <span class="headline_recovered"></span>
                             <i class="fas fa-caret-square-right recovered-right right-button-recovered"></i>
                         </div>
                     </div>
@@ -157,7 +153,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-container">
-                <h6 class="footer-title">COVID-19 Dashboard <i class="far fa-copyright"></i> 2020</h6>
+                <h6 class="footer-title">COVID-19 Dashdoard <i class="far fa-copyright"></i> 2020</h6>
                 <div class="footer-link">
                     <a href="https://github.com/olgamartinchik"><i class="fab fa-github-alt"></i> </a>
                     <a href="https://github.com/lozovaya-collab"><i class="fab fa-github-alt"></i> </a>
@@ -168,10 +164,11 @@
             </div>
         </div>
     </footer>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> -->
     <script src="./dist/script.js"></script>
-
     <script src="script.js"></script>
+
+
+
 </body>
 
 </html>

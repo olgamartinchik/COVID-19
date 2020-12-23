@@ -148,7 +148,7 @@
  }
 
  // получения списка 101 страны из API
- async function getAllCountries(array) {
+ export async function getAllCountries(array) {
      const resu = await fetch(`https://corona.lmao.ninja/v2/countries/`);
      const data = await resu.json();
      data.sort((prev, next) => next.cases - prev.cases)

@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+}
+
+.container {
+  width: 100%;
+  padding: 0 10px;
+  margin: 0 auto;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+}
+
+h4 {
+  font-size: 14px;
+  text-align: center;
+}
+
+h5 {
+  font-size: 11px;
+  text-align: center;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #7a7979;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #353434;
+  border-radius: 8px;
+  border: 1px solid #7a7979;
+}

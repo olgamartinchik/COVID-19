@@ -1,0 +1,65 @@
+.header {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  height: 11.1vh;
+  background-color: rgba(124, 123, 123, 0.719);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2) inset;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-title {
+  font-size: 35px;
+  color: #f0f0f0;
+  text-shadow: #fff -1px -1px 0, #333 1px 1px 0;
+}
+
+.form-label {
+  margin: 0 10px;
+  font-size: 20px;
+  color: #f0f0f0;
+  text-shadow: #fff -1px -1px 0, #333 1px 1px 0;
+}
+
+#input-select {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  font-size: 18px;
+  outline: none;
+  padding: 0 10px;
+  margin: 5px;
+  box-shadow: 0 1px 5px rgba(10, 70, 10, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.select-form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 10px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.fa-search {
+  position: absolute;
+  color: #000;
+  right: 20px;
+}
