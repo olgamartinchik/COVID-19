@@ -1,4 +1,8 @@
 console.log('map')
+let sortPropertyCases = "Total Cases"
+let sortPropertyDeathes = "Deathes"
+let sortPropertyRecovered = "Recovered"
+
 
 import { getAllCountries, getListCountries } from './apiCountry'
 let mapOptions = {
@@ -35,40 +39,54 @@ async function getAllCount(array) {
             name: data[i].country,
             lat: data[i].countryInfo.lat,
             long: data[i].countryInfo.long,
-            cases: data[i].cases
+            "Total Cases": data[i].cases,
+            "Deathes": data[i].deaths,
+            "Recovered": data[i].recovered,
+            "Today Cases": data.todayCases,
+            "Today Deathes": data.todayDeaths,
+            "Today Recovered": data.todayRecovered,
+            "Total Cases/100th": Math.ceil((data.cases / data.population) * 10 ** 5),
+            "Deathes/100th": Math.ceil((data.deaths / data.population) * 10 ** 5),
+            "Recovered/100th": Math.ceil((data.recovered / data.population) * 10 ** 5),
+            "Today Cases/100th": Math.ceil((data.todayCases / data.population) * 10 ** 5),
+            "Today Deathes/100th": Math.ceil((data.todayDeaths / data.population) * 10 ** 5),
+            "Today Recovered/100th": Math.ceil((data.todayRecovered / data.population) * 10 ** 5)
+
         })
     }
 
+    let color = "red"
+    createMarkers(sortPropertyCases, array, color)
+
+}
+
+function createMarkers(prop, array, color) {
     for (let i = 0; i < array.length; i++) {
-        //let circleCenter = [array[i].lat, array[i].long];
+        let circleCenter = [array[i].lat, array[i].long];
         let size = 5000
-        if (data[i].cases >= 100000) {
+        if (array[i][prop] >= 100000) {
             size = 25000
-        } else if (data[i].cases >= 250000) {
+        } else if (array[i][prop] >= 250000) {
             size = 55000
-        } else if (data[i].cases >= 400000) {
+        } else if (array[i][prop] >= 400000) {
             size = 75000
-        } else if (data[i].cases >= 500000) {
+        } else if (array[i][prop] >= 500000) {
             size = 85000
-        } else if (data[i].cases >= 1000000) {
+        } else if (array[i][prop] >= 1000000) {
             size = 90000
         }
-        /*let circleOptions = {
-                color: 'red',
-                fillColor: 'red',
+        let circleOptions = {
+                color: color,
+                fillColor: color,
                 fillOpacity: 0.7
             }
             // Creating a circle
         let circle = L.circle(circleCenter, size, circleOptions);
-        circle.bindPopup(`${data[i].name}`).openPopup();
-        circle.addTo(map1);*/
-        var marker = L.marker([array[i].lat, array[i].long]);
 
-        // Adding marker to the map
-        marker.bindPopup(`${array[i].name} \n ${array[i].cases}`).openPopup();
-        marker.addTo(map1);
-        // Adding marker to the map
-
-
-   }
+        circle.bindPopup(`${array[i].name}  (${prop}: ${array[i][prop]})`)
+        circle.addTo(map1);
+    }
 }
+   
+
+
