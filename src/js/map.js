@@ -1,11 +1,8 @@
 console.log('map')
-<<<<<<< HEAD
-=======
 let sortPropertyCases = "Total Cases"
 let sortPropertyDeathes = "Deathes"
 let sortPropertyRecovered = "Recovered"
 
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
 
 import { getAllCountries, getListCountries } from './apiCountry'
 let mapOptions = {
@@ -15,11 +12,7 @@ let mapOptions = {
 
 // Creating a map object
 let map1 = new L.map('map', mapOptions);
-<<<<<<< HEAD
-console.log('xxxxxxxx:' + map1);
-=======
 console.log(map1);
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
 // Creating a Layer object
 let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
@@ -29,17 +22,8 @@ map1.addLayer(layer);
 
 
 const arrayCountries = []
-<<<<<<< HEAD
-
 getAllCount(arrayCountries)
 
-console.log('map: ' + arrayCountries)
-
-
-=======
-getAllCount(arrayCountries)
-
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
 
 
 
@@ -55,29 +39,6 @@ async function getAllCount(array) {
             name: data[i].country,
             lat: data[i].countryInfo.lat,
             long: data[i].countryInfo.long,
-<<<<<<< HEAD
-            cases: data[i].cases
-        })
-    }
-
-    for (let i = 0; i < array.length; i++) {
-        //let circleCenter = [array[i].lat, array[i].long];
-        let size = 5000
-        if (data[i].cases >= 100000) {
-            size = 25000
-        } else if (data[i].cases >= 250000) {
-            size = 55000
-        } else if (data[i].cases >= 400000) {
-            size = 75000
-        } else if (data[i].cases >= 500000) {
-            size = 85000
-        } else if (data[i].cases >= 1000000) {
-            size = 90000
-        }
-        /*let circleOptions = {
-                color: 'red',
-                fillColor: 'red',
-=======
             "Total Cases": data[i].cases,
             "Deathes": data[i].deaths,
             "Recovered": data[i].recovered,
@@ -117,32 +78,12 @@ function createMarkers(prop, array, color) {
         let circleOptions = {
                 color: color,
                 fillColor: color,
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
                 fillOpacity: 0.7
             }
             // Creating a circle
         let circle = L.circle(circleCenter, size, circleOptions);
-<<<<<<< HEAD
-        circle.bindPopup(`${data[i].name}`).openPopup();
-        circle.addTo(map1);*/
-        var marker = L.marker([array[i].lat, array[i].long]);
-
-        // Adding marker to the map
-        marker.bindPopup(`${array[i].name} \n ${array[i].cases}`).openPopup();
-        marker.addTo(map1);
-        // Adding marker to the map
-        console.log('nnnnnnn: ' + typeof marker)
-
-
-    }
-}
-=======
 
         circle.bindPopup(`${array[i].name}  (${prop}: ${array[i][prop]})`)
         circle.addTo(map1);
     }
 }
-   
-
-
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9

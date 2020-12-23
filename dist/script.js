@@ -11,17 +11,11 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_openSection__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/openSection */ "./src/js/openSection.js");
 /* harmony import */ var _js_getDate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/getDate */ "./src/js/getDate.js");
-<<<<<<< HEAD
 /* harmony import */ var _js_Keyboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/Keyboard */ "./src/js/Keyboard.js");
 /* harmony import */ var _js_Autocomplete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/Autocomplete */ "./src/js/Autocomplete.js");
 /* harmony import */ var _js_apiCountry__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/apiCountry */ "./src/js/apiCountry.js");
 /* harmony import */ var _js_chart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/chart */ "./src/js/chart.js");
 /* harmony import */ var _js_map__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/map */ "./src/js/map.js");
-=======
-/* harmony import */ var _js_Autocomplete__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/Autocomplete */ "./src/js/Autocomplete.js");
-/* harmony import */ var _js_apiCountry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/apiCountry */ "./src/js/apiCountry.js");
-/* harmony import */ var _js_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/map */ "./src/js/map.js");
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
 
 
 
@@ -631,15 +625,9 @@ const Keyboard = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "array1": () => /* binding */ array1,
-<<<<<<< HEAD
-/* harmony export */   "getDateCountries": () => /* binding */ getDateCountries
-=======
 /* harmony export */   "getDataCountries": () => /* binding */ getDataCountries,
 /* harmony export */   "getAllCountries": () => /* binding */ getAllCountries
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
 /* harmony export */ });
-/* harmony import */ var _Autocomplete__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Autocomplete */ "./src/js/Autocomplete.js");
-
 const array1 = []; // массив самих стран
 
 const arrayList = []; // массив обьектов с информациях о странах
@@ -675,11 +663,7 @@ const propsCases = ["Total Cases", "Today Cases", "Today Cases/100th", "Total Ca
 const propsRecovered = ["Recovered", "Today Recovered", "Today Recovered/100th", "Recovered/100th"]; // свойства, по которым сортируются смерти
 
 const propsDeathes = ["Deathes", "Deathes/100th", "Today Deathes", "Today Deathes/100th"];
-<<<<<<< HEAD
-const getDateCountries = () => {
-=======
 const getDataCountries = () => {
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
   // получаем список стран
   getAllCountries(array1); // получаем глобальные переменные
 
@@ -782,10 +766,7 @@ async function getAllCountries(array) {
 async function getGlobalValues() {
   const resu = await fetch(`https://corona.lmao.ninja/v2/all?yesterday`);
   const data = await resu.json();
-<<<<<<< HEAD
-=======
   console.log(data.population);
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
   globalValues = {
     "Total Cases": data.cases,
     Deathes: data.deaths,
@@ -806,15 +787,11 @@ async function getGlobalValues() {
   globalCases.innerHTML = valueCases;
   globalDeathes.innerHTML = valueDeathes;
   globalRecovered.innerHTML = valueRecovered;
-<<<<<<< HEAD
-} // создаем список стран
-=======
 } // получаем список стран
 //  getAllCountries(array1)
 // получаем глобальные переменные
 //  getGlobalValues()
 // создаем список стран
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
 
 
 function createList(array, prop, element, headline) {
@@ -981,12 +958,9 @@ const getDate = () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _apiCountry__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./apiCountry */ "./src/js/apiCountry.js");
 console.log('map');
-<<<<<<< HEAD
-=======
 let sortPropertyCases = "Total Cases";
 let sortPropertyDeathes = "Deathes";
 let sortPropertyRecovered = "Recovered";
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
 
 let mapOptions = {
   center: [0, 0],
@@ -994,21 +968,13 @@ let mapOptions = {
 }; // Creating a map object
 
 let map1 = new L.map('map', mapOptions);
-<<<<<<< HEAD
-console.log('xxxxxxxx:' + map1); // Creating a Layer object
-=======
 console.log(map1); // Creating a Layer object
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
 
 let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'); // Adding layer to the map
 
 map1.addLayer(layer);
 const arrayCountries = [];
 getAllCount(arrayCountries);
-<<<<<<< HEAD
-console.log('map: ' + arrayCountries);
-=======
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
 
 async function getAllCount(array) {
   const resu = await fetch(`https://corona.lmao.ninja/v2/countries/`);
@@ -1021,44 +987,6 @@ async function getAllCount(array) {
       name: data[i].country,
       lat: data[i].countryInfo.lat,
       long: data[i].countryInfo.long,
-<<<<<<< HEAD
-      cases: data[i].cases
-    });
-  }
-
-  for (let i = 0; i < array.length; i++) {
-    //let circleCenter = [array[i].lat, array[i].long];
-    let size = 5000;
-
-    if (data[i].cases >= 100000) {
-      size = 25000;
-    } else if (data[i].cases >= 250000) {
-      size = 55000;
-    } else if (data[i].cases >= 400000) {
-      size = 75000;
-    } else if (data[i].cases >= 500000) {
-      size = 85000;
-    } else if (data[i].cases >= 1000000) {
-      size = 90000;
-    }
-    /*let circleOptions = {
-            color: 'red',
-            fillColor: 'red',
-            fillOpacity: 0.7
-        }
-        // Creating a circle
-    let circle = L.circle(circleCenter, size, circleOptions);
-    circle.bindPopup(`${data[i].name}`).openPopup();
-    circle.addTo(map1);*/
-
-
-    var marker = L.marker([array[i].lat, array[i].long]); // Adding marker to the map
-
-    marker.bindPopup(`${array[i].name} \n ${array[i].cases}`).openPopup();
-    marker.addTo(map1); // Adding marker to the map
-
-    console.log('nnnnnnn: ' + typeof marker);
-=======
       "Total Cases": data[i].cases,
       "Deathes": data[i].deaths,
       "Recovered": data[i].recovered,
@@ -1104,7 +1032,6 @@ function createMarkers(prop, array, color) {
     let circle = L.circle(circleCenter, size, circleOptions);
     circle.bindPopup(`${array[i].name}  (${prop}: ${array[i][prop]})`);
     circle.addTo(map1);
->>>>>>> 5c05f28bbda5a28e19ebd421f509ca79199eeff9
   }
 }
 
