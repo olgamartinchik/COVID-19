@@ -449,11 +449,21 @@ async function getAllCount(array) {
       long: data[i].countryInfo.long,
       "Total Cases": data[i].cases,
       "Deathes": data[i].deaths,
-      "Recovered": data[i].recovered
+      "Recovered": data[i].recovered,
+      "Today Cases": data.todayCases,
+      "Today Deathes": data.todayDeaths,
+      "Today Recovered": data.todayRecovered,
+      "Total Cases/100th": Math.ceil(data.cases / data.population * 10 ** 5),
+      "Deathes/100th": Math.ceil(data.deaths / data.population * 10 ** 5),
+      "Recovered/100th": Math.ceil(data.recovered / data.population * 10 ** 5),
+      "Today Cases/100th": Math.ceil(data.todayCases / data.population * 10 ** 5),
+      "Today Deathes/100th": Math.ceil(data.todayDeaths / data.population * 10 ** 5),
+      "Today Recovered/100th": Math.ceil(data.todayRecovered / data.population * 10 ** 5)
     });
   }
 
-  createMarkers(sortPropertyCases, array, "red");
+  let color = "green";
+  createMarkers(sortPropertyRecovered, array, color);
 }
 
 function createMarkers(prop, array, color) {
