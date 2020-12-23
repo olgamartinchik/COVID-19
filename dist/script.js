@@ -27,7 +27,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  (0,_js_apiCountry__WEBPACK_IMPORTED_MODULE_4__.getDateCountries)(); //график
+  (0,_js_apiCountry__WEBPACK_IMPORTED_MODULE_4__.getDataCountries)(); //график
 
   (0,_js_chart__WEBPACK_IMPORTED_MODULE_5__.getChart)(); // развернуть секцию на весь экран
 
@@ -189,6 +189,7 @@ const Autocomplete = (selector, data) => {
     document.body.addEventListener('click', function (e) {
       if (!wrap.contains(e.target)) setActive(false);
       listItems = [];
+      focusedItem = -1;
     });
   });
 };

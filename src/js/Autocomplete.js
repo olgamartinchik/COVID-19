@@ -157,12 +157,13 @@ export const Autocomplete = (selector, data) => {
 
         document.body.addEventListener('click', function(e) {
             if (!wrap.contains(e.target)) setActive(false);
-            listItems = []
+            listItems = [];
+            focusedItem = -1;
         });
-    });
+    })
+
 
 }
-
 export const searchCountryWithClick = () => {
     setTimeout(() => {
         let country = document.querySelectorAll('.case-country-sick li');
