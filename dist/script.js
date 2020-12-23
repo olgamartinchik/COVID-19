@@ -418,6 +418,9 @@ const getDate = () => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _apiCountry__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./apiCountry */ "./src/js/apiCountry.js");
 console.log('map');
+let sortPropertyCases = "Total Cases";
+let sortPropertyDeathes = "Deathes";
+let sortPropertyRecovered = "Recovered";
 
 let mapOptions = {
   center: [0, 0],
@@ -444,39 +447,40 @@ async function getAllCount(array) {
       name: data[i].country,
       lat: data[i].countryInfo.lat,
       long: data[i].countryInfo.long,
-      cases: data[i].cases
+      "Total Cases": data[i].cases,
+      "Deathes": data[i].deaths,
+      "Recovered": data[i].recovered
     });
   }
 
+  createMarkers(sortPropertyCases, array, "red");
+}
+
+function createMarkers(prop, array, color) {
   for (let i = 0; i < array.length; i++) {
     let circleCenter = [array[i].lat, array[i].long];
     let size = 5000;
 
-    if (data[i].cases >= 100000) {
+    if (array[i][prop] >= 100000) {
       size = 25000;
-    } else if (data[i].cases >= 250000) {
+    } else if (array[i][prop] >= 250000) {
       size = 55000;
-    } else if (data[i].cases >= 400000) {
+    } else if (array[i][prop] >= 400000) {
       size = 75000;
-    } else if (data[i].cases >= 500000) {
+    } else if (array[i][prop] >= 500000) {
       size = 85000;
-    } else if (data[i].cases >= 1000000) {
+    } else if (array[i][prop] >= 1000000) {
       size = 90000;
     }
 
     let circleOptions = {
-      color: 'red',
-      fillColor: 'red',
+      color: color,
+      fillColor: color,
       fillOpacity: 0.7
     }; // Creating a circle
 
     let circle = L.circle(circleCenter, size, circleOptions);
     circle.addTo(map1);
-    /*var marker = L.marker([array[i].lat, array[i].long]);
-      // Adding marker to the map
-    marker.bindPopup(`${array[i].name} \n ${array[i].cases}`).openPopup();
-    marker.addTo(map1);*/
-    // Adding marker to the map
   }
 }
 
