@@ -385,6 +385,15 @@ h5 {
 .right-map {
   color: #494848; }
 
+.headline {
+    position: absolute;
+    z-index: 401;
+    color: #494747;
+    top: 15px;
+    font-size: 16px;
+    font-weight: 600;
+} 
+
 .footer {
   display: flex;
   align-items: center;
