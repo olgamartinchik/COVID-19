@@ -9,11 +9,11 @@
     <link rel="shortcut icon" href="assets/favicon.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <!-- <link rel="stylesheet" href="./src/sass/style.css"> -->
     <link rel="stylesheet" href="./dist/style.css">
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -81,6 +81,7 @@
                     </div>
                 </div>
                 <div class="main-table main-table_middle">
+
                     <div class="main-subtable  subtable-map">
                         <div class="circle-btn">
                             <i class="far fa-times-circle"></i>
@@ -103,12 +104,16 @@
                                 </div>
                             </div>
                         </div>
-
+                        <span class="headline"> Total Cases</span>
                         <div class="map-case">
 
                             <div id="map"></div>
 
                         </div>
+                        <i class="fas fa-caret-square-left left-map"></i>
+
+                        <i class="fas fa-caret-square-right right-map"></i>
+
                     </div>
                     <div class="main-subtable-middle subtable-update">
 
