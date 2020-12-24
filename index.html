@@ -22,6 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-moment/0.1.1/chartjs-adapter-moment.min.js"></script>
 
     <title>Document</title>
+    <link href="style.css" rel="stylesheet">
 </head>
 
 
@@ -73,15 +74,12 @@
                         </div>
                         <h4 class="table-title table-title-country">Cases by Country</h4>
                         <div class="list_of_countries_cases list_of_countries case-country-sick">
-                            <!-- <ul class="case-country   case-country-sick">
 
-                                <li class="country  country-sick"><span class="color-sick">22 222 222</span> <span><i class="far fa-flag"></i></span> <span>Italy</span></li>
-                                <li class="country country-sick"><span class="color-sick">22 222 222</span> <span><i class="far fa-flag"></i></span> <span>Bosnia and Herzegovina</span></li>
-                            </ul> -->
                         </div>
                     </div>
                 </div>
                 <div class="main-table main-table_middle">
+
                     <div class="main-subtable  subtable-map">
                         <div class="circle-btn">
                             <i class="far fa-times-circle"></i>
@@ -94,7 +92,6 @@
                                 <div class="legend_container">
                                     <h6 class="legend_subtitle">Cases</h6>
                                     <ul class="legend_list">
-
                                         <li><span><i class="fas fa-circle"></i></span> >= 1000000</li>
                                         <li><span><i class="fas fa-circle"></i></span>>= 500000</li>
                                         <li><span><i class="fas fa-circle"></i></span>>= 400000</li>
@@ -104,14 +101,17 @@
                                 </div>
                             </div>
                         </div>
-
+                        <span class="headline"> Total Cases</span>
                         <div class="map-case">
 
                             <div id="map"></div>
 
                         </div>
                         <i class="fas fa-caret-square-left left-map"></i>
+
+
                         <i class="fas fa-caret-square-right right-map"></i>
+
                     </div>
                     <div class="main-subtable-middle subtable-update">
 
@@ -142,10 +142,7 @@
                             <span class="headline_deathes">Deathes</span>
                             <div class="global-case global-case-deaths deathes">11 111 111</div>
                             <div class="list_of_countries_deathes list_of_countries case-country-deathes">
-                                <!-- <ul class="case-country ">
-                                    <li class="country  country-deaths"><span class="color-deaths">44 444 444 deaths</span> <span>Italy</span></li>
-                                    <li class="country country-deaths"><span class="color-deaths">44 444 444 deaths</span> <span>Bosnia and Herzegovina</span></li>
-                                </ul> -->
+
                             </div>
 
                             <i class="fas fa-caret-square-left deaths-left left-button-deathes"></i>
@@ -161,11 +158,7 @@
                             <span class="headline_recovered">Recovered</span>
                             <div class="global-case global-case-recovered recovered">11 111 111</div>
                             <div class="list_of_countries_recovered list_of_countries case-country-recovered">
-                                <!-- <ul class="case-country">
 
-                                    <li class="country country-recovered"><span class="color-recovered">33 333 333 recovered</span> <span>Italy</span></li>
-                                    <li class="country country-recovered"><span class="color-recovered">33 333 333 recovered</span> <span>Bosnia and Herzegovina</span></li>
-                                </ul> -->
                             </div>
                             <i class="fas fa-caret-square-left recovered-left left-button-recovered"></i>
 
@@ -179,8 +172,7 @@
                         <div class="case-diagram">
                             <canvas id="myChart"></canvas>
                         </div>
-                        <!-- <i class="fas fa-caret-square-left diagram-left"></i> -->
-                        <!-- <i class="fas fa-caret-square-right diagram-right"></i> -->
+
                     </div>
                 </div>
 
@@ -207,6 +199,7 @@
 
     <script src="./dist/script.js"></script>
 
+    <script src="script.js"></script>
 </body>
 
 </html>
