@@ -475,7 +475,7 @@ h5 {
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   user-select: none;
   transition: bottom 0.4s;
-  z-index: 3; }
+  z-index: 1006; }
 
 .keyboard--hidden {
   bottom: -100%; }

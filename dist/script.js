@@ -189,6 +189,7 @@ const Autocomplete = (selector, data) => {
     document.body.addEventListener('click', function (e) {
       if (!wrap.contains(e.target)) setActive(false);
       listItems = [];
+      focusedItem = -1;
     });
   });
 };
@@ -224,6 +225,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Keyboard": () => /* binding */ Keyboard
 /* harmony export */ });
+/* harmony import */ var _Autocomplete__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Autocomplete */ "./src/js/Autocomplete.js");
+
 const Keyboard = {
   elements: {
     main: null,
