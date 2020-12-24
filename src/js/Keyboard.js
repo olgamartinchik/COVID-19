@@ -1,3 +1,4 @@
+import { Autocomplete } from './Autocomplete'
 export const Keyboard = {
 
     elements: {
