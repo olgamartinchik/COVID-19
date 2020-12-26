@@ -203,14 +203,14 @@ function createList(array, prop, element, headline) {
     element.innerHTML = ''
     let sortArray = array.sort((prev, next) => next[prop] - prev[prop])
     const list = document.createElement('ul')
-    list.className = 'case-country'
+    list.className = 'case-country '
     for (let i = 0; i < sortArray.length; i++) {
         const li = document.createElement('li')
         let value = sortArray[i][prop].toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ')
 
         li.className = 'country'
         li.innerHTML = `<span class="color-prop">${value}</span> <span><img class="map-icon" src="${sortArray[i].Flag}" alt="icon map" > </span>
-                        <span>${sortArray[i].Country}</span>`
+                        <span class="nameOfCountry">${sortArray[i].Country}</span>`
         list.append(li)
     }
 

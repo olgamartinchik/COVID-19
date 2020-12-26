@@ -98,8 +98,6 @@ export const Autocomplete = (selector, data) => {
                 setActive(true);
             } else setActive(false);
 
-
-
         });
 
         input.addEventListener('keydown', e => {
@@ -166,24 +164,42 @@ export const Autocomplete = (selector, data) => {
 }
 export const searchCountryWithClick = () => {
     setTimeout(() => {
-        let country = document.querySelectorAll('.case-country-sick li');
-        console.log(country)
+        let country = document.querySelector('.case-country-sick').children[0].children;
+        let countryDeathes = document.querySelector('.case-country-deathes').children[0].children;
+        let countryRecovered = document.querySelector('.case-country-recovered').children[0].children;
+
+
 
         for (let i = 0; i < country.length; i++) {
-            // country[i].classList.remove('country-active');
-            country[i].addEventListener('click', () => {
-                // country[i].classList.remove('country-active');
-                if (country[i].classList.contains('country-active')) {
-                    country[i].classList.remove('country-active');
-                } else {
-                    country[i].classList.add('country-active');
-                    country[i].scrollIntoView();
+
+            country[i].addEventListener('click', (e) => {
+
+                for (let c = 0; c < country.length; c++) {
+                    country[c].classList.remove('country-active')
                 }
+
+                country[i].classList.add('country-active');
+                for (let k = 0; k < countryDeathes.length; k++) {
+                    console.log(countryDeathes[k])
+                    if (country[i].children[2].innerHTML === countryDeathes[k].children[2].innerHTML) {
+                        countryDeathes[k].classList.add('country-active');
+                        countryDeathes[k].scrollIntoView();
+                    } else {
+                        countryDeathes[k].classList.remove('country-active')
+                    }
+                }
+                for (let j = 0; j < countryRecovered.length; j++) {
+                    if (country[i].children[2].innerHTML === countryRecovered[j].children[2].innerHTML) {
+                        countryRecovered[j].classList.add('country-active');
+                        countryRecovered[j].scrollIntoView();
+                    } else {
+                        countryRecovered[j].classList.remove('country-active')
+                    }
+                }
+
+
             })
-
         }
-
-
 
     }, 15000)
 

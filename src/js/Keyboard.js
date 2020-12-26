@@ -1,4 +1,6 @@
-import { Autocomplete } from './Autocomplete'
+import { Autocomplete } from './Autocomplete';
+import { array1 } from "./apiCountry";
+
 export const Keyboard = {
 
     elements: {
@@ -67,6 +69,7 @@ export const Keyboard = {
                 });
                 this.elements.input.dispatchEvent(inputEvent);
             });
+
         })
 
 
@@ -74,7 +77,30 @@ export const Keyboard = {
         function aaa(b) {
             b.classList.remove("keyboard__press");
         }
+        //////
+        function searchListCountry() {
 
+
+            let country = document.querySelectorAll('.case-country li')
+            if (country) {
+                if (document.querySelector("#input-select").value !== '') {
+                    country.forEach(elem => {
+                        if (elem.innerText.toUpperCase().search(input.value) === -1) {
+                            elem.classList.remove('country-active');
+                        } else {
+                            elem.classList.add('country-active');
+                            elem.scrollIntoView();
+                        }
+                    })
+                } else {
+                    country.forEach(elem => {
+                        elem.classList.remove('country-active');
+                    })
+                }
+            }
+
+        }
+        ///////
 
         this.elements.input.addEventListener('keydown', (e) => {
 
@@ -116,6 +142,7 @@ export const Keyboard = {
             }
 
         })
+
 
     },
 
