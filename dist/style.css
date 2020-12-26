@@ -386,12 +386,22 @@ h5 {
   color: #494848; }
 
 .headline {
+<<<<<<< HEAD
   position: absolute;
   z-index: 401;
   color: #494747;
   top: 15px;
   font-size: 16px;
   font-weight: 600; }
+=======
+    position: absolute;
+    z-index: 401;
+    color: #494747;
+    top: 15px;
+    font-size: 16px;
+    font-weight: 600;
+} 
+>>>>>>> 044bac4a86fe0dbc0da90c5e801cdea78a3733ba
 
 .footer {
   display: flex;
