@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" /> -->
+    <!-- <link rel="stylesheet" href="./src/sass/style.css"> -->
+    <link rel="stylesheet" href="./dist/style.css">
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-moment/0.1.1/chartjs-adapter-moment.min.js"></script>
+
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet"></head>
+
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <h1 class="header-title">
+                    COVID-19 Dashboard
+                </h1>
+                <div class="select-form">
+                    <label class="form-label" for="input-select">Select Country</label>
+                    <div class="input-container">
+                        <input id="input-select" type="text" autocomplete="off">
+                        <i class="fas fa-search"></i>
+
+                        <div class="btn_keyboard">
+                            <i class="fas fa-keyboard"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="main-container">
+                <div class="main-table main-table_left">
+                    <div class="main-subtable  subtable-global-sick">
+                        <div class="circle-btn">
+                            <i class="far fa-times-circle"></i>
+                        </div>
+
+                        <h4 class="table-title table-title-sick">Global Cases</h4>
+                        <span class="headline_cases">Total Casess</span>
+
+                        <div class="global-case global-case-sick cases">11 111 111</div>
+
+                        <i class="fas fa-caret-square-left global-case-left left-button-cases"></i>
+
+                        <i class="fas fa-caret-square-right global-case-right right-button-cases"></i>
+                    </div>
+
+                    <div class="main-subtable subtable-country">
+                        <div class="circle-btn">
+                            <i class="far fa-times-circle"></i>
+                        </div>
+                        <h4 class="table-title table-title-country">Cases by Country</h4>
+                        <div class="list_of_countries_cases list_of_countries case-country-sick">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="main-table main-table_middle">
+
+                    <div class="main-subtable  subtable-map">
+                        <div class="circle-btn">
+                            <i class="far fa-times-circle"></i>
+                        </div>
+
+                        <div class="legend_map ">
+                            <i class="fas fa-list-ul"></i>
+                            <div class="legend_about">
+                                <h5 class="legend_title">Legend</h5>
+                                <div class="legend_container">
+                                    <h6 class="legend_subtitle">Cases</h6>
+                                    <ul class="legend_list">
+                                        <li><span><i class="fas fa-circle"></i></span> >= 1000000</li>
+                                        <li><span><i class="fas fa-circle"></i></span>>= 500000</li>
+                                        <li><span><i class="fas fa-circle"></i></span>>= 400000</li>
+                                        <li><span><i class="fas fa-circle"></i></span>>= 250000</li>
+                                        <li><span><i class="fas fa-circle"></i></span>>= 100000</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="headline"> Total Cases</span>
+                        <div class="map-case">
+
+                            <div id="map"></div>
+
+                        </div>
+                        <i class="fas fa-caret-square-left left-map"></i>
+
+
+                        <i class="fas fa-caret-square-right right-map"></i>
+
+                    </div>
+                    <div class="main-subtable-middle subtable-update">
+
+                        <div class="main-subtable ">
+                            <div class="circle-btn">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                            <div class="global-case global-case-country">101</div>
+                            <h5 class="table-title">countries</h5>
+                        </div>
+                        <div class="main-subtable main-subtable-date">
+                            <div class="circle-btn">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                            <h5 class="table-title">Last Updated at (M/D/YYYY)</h5>
+                            <div class="global-case global-case-date">12/14/2020</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="main-table main-table_right">
+                    <div class="main-subtable-middle subtable-statistics">
+                        <div class="main-subtable subtable-case-deaths">
+                            <div class="circle-btn">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                            <h4 class="table-title table-title-deaths">Global Deaths</h4>
+                            <span class="headline_deathes">Deathes</span>
+                            <div class="global-case global-case-deaths deathes">11 111 111</div>
+                            <div class="list_of_countries_deathes list_of_countries case-country-deathes">
+
+                            </div>
+
+                            <i class="fas fa-caret-square-left deaths-left left-button-deathes"></i>
+
+                            <i class="fas fa-caret-square-right deaths-right right-button-deathes"></i>
+                        </div>
+                        <div class="main-subtable subtable-case-recovered">
+
+                            <div class="circle-btn">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                            <h4 class="table-title table-title">Global Recovered</h4>
+                            <span class="headline_recovered">Recovered</span>
+                            <div class="global-case global-case-recovered recovered">11 111 111</div>
+                            <div class="list_of_countries_recovered list_of_countries case-country-recovered">
+
+                            </div>
+                            <i class="fas fa-caret-square-left recovered-left left-button-recovered"></i>
+
+                            <i class="fas fa-caret-square-right recovered-right right-button-recovered"></i>
+                        </div>
+                    </div>
+                    <div class="main-subtable subtable-diagram">
+                        <div class="circle-btn">
+                            <i class="far fa-times-circle"></i>
+                        </div>
+                        <div class="case-diagram">
+                            <canvas id="myChart"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <h6 class="footer-title">COVID-19 Dashboard <i class="far fa-copyright"></i> 2020</h6>
+                <div class="footer-link">
+                    <a href="https://github.com/olgamartinchik"><i class="fab fa-github-alt"></i> </a>
+                    <a href="https://github.com/lozovaya-collab"><i class="fab fa-github-alt"></i> </a>
+                </div>
+
+                <a href="https://rs.school/js/" target="_blank"><img class="footerLogo" src="https://rs.school/images/rs_school_js.svg" alt="icon"></a>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="./dist/script.js"></script>
+
+    <script src="script.js"></script>
+<script src="script.js"></script></body>
+
+</html>

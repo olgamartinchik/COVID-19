@@ -203,10 +203,7 @@ const searchCountryWithClick = () => {
       country[i].addEventListener('click', e => {
         for (let c = 0; c < country.length; c++) {
           country[c].classList.remove('country-active');
-        } // console.log(country[i])
-        // console.log('click' + country[i].innerText)
-        // console.log(country[i].children[2].innerHTML)
-
+        }
 
         country[i].classList.add('country-active');
 
@@ -247,6 +244,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Keyboard": () => /* binding */ Keyboard
 /* harmony export */ });
 /* harmony import */ var _Autocomplete__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Autocomplete */ "./src/js/Autocomplete.js");
+/* harmony import */ var _apiCountry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./apiCountry */ "./src/js/apiCountry.js");
+
 
 const Keyboard = {
   elements: {
@@ -304,7 +303,30 @@ const Keyboard = {
 
     function aaa(b) {
       b.classList.remove("keyboard__press");
-    }
+    } //////
+
+
+    function searchListCountry() {
+      let country = document.querySelectorAll('.case-country li');
+
+      if (country) {
+        if (document.querySelector("#input-select").value !== '') {
+          country.forEach(elem => {
+            if (elem.innerText.toUpperCase().search(input.value) === -1) {
+              elem.classList.remove('country-active');
+            } else {
+              elem.classList.add('country-active');
+              elem.scrollIntoView();
+            }
+          });
+        } else {
+          country.forEach(elem => {
+            elem.classList.remove('country-active');
+          });
+        }
+      }
+    } ///////
+
 
     this.elements.input.addEventListener('keydown', e => {
       for (let i = 0; i < this.elements.keys.length; i++) {
@@ -823,14 +845,14 @@ function createList(array, prop, element, headline) {
   element.innerHTML = '';
   let sortArray = array.sort((prev, next) => next[prop] - prev[prop]);
   const list = document.createElement('ul');
-  list.className = 'case-country';
+  list.className = 'case-country ';
 
   for (let i = 0; i < sortArray.length; i++) {
     const li = document.createElement('li');
     let value = sortArray[i][prop].toString().replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
     li.className = 'country';
     li.innerHTML = `<span class="color-prop">${value}</span> <span><img class="map-icon" src="${sortArray[i].Flag}" alt="icon map" > </span>
-                        <span>${sortArray[i].Country}</span>`;
+                        <span class="nameOfCountry">${sortArray[i].Country}</span>`;
     list.append(li);
   }
 

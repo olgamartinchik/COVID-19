@@ -98,8 +98,6 @@ export const Autocomplete = (selector, data) => {
                 setActive(true);
             } else setActive(false);
 
-
-
         });
 
         input.addEventListener('keydown', e => {
@@ -174,15 +172,13 @@ export const searchCountryWithClick = () => {
 
         for (let i = 0; i < country.length; i++) {
 
+
             country[i].addEventListener('click', (e) => {
 
                 for (let c = 0; c < country.length; c++) {
                     country[c].classList.remove('country-active')
                 }
-                // console.log(country[i])
 
-                // console.log('click' + country[i].innerText)
-                // console.log(country[i].children[2].innerHTML)
 
                 country[i].classList.add('country-active');
                 for (let k = 0; k < countryDeathes.length; k++) {
