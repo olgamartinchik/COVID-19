@@ -282,7 +282,7 @@ h5 {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1005; }
+  z-index: 1003; }
   .main-subtable-open .global-case {
     font-size: 60px; }
   .main-subtable-open h4 {
@@ -386,13 +386,12 @@ h5 {
   color: #494848; }
 
 .headline {
-    position: absolute;
-    z-index: 401;
-    color: #494747;
-    top: 15px;
-    font-size: 16px;
-    font-weight: 600;
-} 
+  position: absolute;
+  z-index: 401;
+  color: #494747;
+  top: 15px;
+  font-size: 16px;
+  font-weight: 600; }
 
 .footer {
   display: flex;
